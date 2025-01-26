@@ -1,0 +1,64 @@
+---
+title: "Final Project Code"
+format: pdf
+editor: visual
+author: "Aden Bhagwat, Emily Mingus, Erick Njue"
+---
+
+```{r load-packages}
+library(edld652)
+library(here)
+library(rio)
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(modelsummary)
+options(modelsummary_factory_default =
+          'kableExtra')
+options(modelsummary_factory_latex =
+          'kableExtra')
+options(modelsummary_factory_html =
+          'kableExtra')
+```
+
+```{r get-data}
+get_documentation("EDFacts_rla_achievement_lea_2010_2019")
+get_documentation("EDFacts_math_achievement_lea_2010_2019")
+#same documentation for both
+
+# rla_achieve <- get_data("EDFacts_rla_achievement_lea_2010_2019") %>% 
+#   clean_names()
+# 
+# rla_sub <- rla_achieve %>%
+#   select(leaid, matches("^(ecd|all).*pctprof$"))
+# 
+# export(rla_sub, "Data/rla_sub.Rdata")
+# 
+# math_achieve <- get_data("EDFacts_math_achievement_lea_2010_2019") %>% 
+#   clean_names()
+# 
+# math_sub <- math_achieve %>% 
+#   select(leaid, matches("^(ecd|all).*pctprof$"))
+# 
+# export(math_sub, "Data/math_sub.Rdata")
+
+rla_sub<-import(here("Data/rla_sub.Rdata"))
+math_sub<-import(here("Data/math_sub.Rdata"))
+
+```
+
+```{r explore-data}
+
+glimpse(rla_sub)
+glimpse(math_sub)
+
+table_rla <- as.data.frame(table(rla_sub$all_rla00pctprof))
+colnames(table_rla) <- c("Percent of Students Proficient", "Count") 
+print(table_rla)
+
+table_math <- as.data.frame(table(math_sub$all_mth00pctprof))
+colnames(table_math) <- c("Percent of Students Proficient", "Count") 
+print(table_math)
+```
+
+There are a range of ways data is measured, from exact percentages, to ranges, to greater than/less than statements. We need to come up with rules to standardize and drop n/a and PS values. I think maybe we could just take the lower number in the range, and print whatever number is reported in greater than/less than statements. We would need to add a disclaimer.
