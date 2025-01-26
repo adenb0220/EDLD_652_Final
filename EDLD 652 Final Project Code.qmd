@@ -6,7 +6,7 @@ author: "Aden Bhagwat, Emily Mingus, Erick Njue"
 ---
 
 ```{r load-packages}
-library(edld652)
+# library(edld652)
 library(here)
 library(rio)
 library(tidyverse)
@@ -23,8 +23,9 @@ options(modelsummary_factory_html =
 
 ```{r get-data}
 get_documentation("EDFacts_rla_achievement_lea_2010_2019")
-get_documentation("EDFacts_math_achievement_lea_2010_2019")
-#same documentation for both
+# get_documentation("EDFacts_math_achievement_lea_2010_2019")
+
+###same documentation for both
 
 # rla_achieve <- get_data("EDFacts_rla_achievement_lea_2010_2019") %>% 
 #   clean_names()
@@ -51,6 +52,7 @@ math_sub<-import(here("Data/math_sub.Rdata"))
 
 glimpse(rla_sub)
 glimpse(math_sub)
+str(rla_sub)
 
 table_rla <- as.data.frame(table(rla_sub$all_rla00pctprof))
 colnames(table_rla) <- c("Percent of Students Proficient", "Count") 
@@ -62,3 +64,54 @@ print(table_math)
 ```
 
 There are a range of ways data is measured, from exact percentages, to ranges, to greater than/less than statements. We need to come up with rules to standardize and drop n/a and PS values. I think maybe we could just take the lower number in the range, and print whatever number is reported in greater than/less than statements. We would need to add a disclaimer.
+
+```{r data-cleaning}
+
+rla_clean <- rla_sub %>%
+  mutate(across(
+    -leaid, 
+    ~ gsub("-.*", "", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ gsub("^[A-Za-z]{2}([0-9]{1}).*", "\\1", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ gsub("^[A-Za-z]{1}([0-9]{2}).*", "\\1", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ na_if(., "PS"))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ na_if(., "n/a"))) %>% 
+  mutate(across(
+    everything(),
+    as.numeric))
+
+table(rla_clean$all_rla00pctprof, useNA = "ifany")
+mean(rla_clean$all_rla00pctprof, na.rm=T)
+
+
+
+math_clean <- math_sub %>%
+  mutate(across(
+    -leaid, 
+    ~ gsub("-.*", "", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ gsub("^[A-Za-z]{2}([0-9]{1}).*", "\\1", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ gsub("^[A-Za-z]{1}([0-9]{2}).*", "\\1", .))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ na_if(., "PS"))) %>% 
+  mutate(across(
+    -leaid, 
+    ~ na_if(., "n/a"))) %>% 
+  mutate(across(
+    everything(),
+    as.numeric))
+
+table(math_clean$all_mth00pctprof, useNA = "ifany")
+mean(math_clean$all_mth00pctprof, na.rm=T)
+```
