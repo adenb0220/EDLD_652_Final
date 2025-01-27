@@ -120,8 +120,6 @@ mean(math_clean$all_mth00pctprof, na.rm=T)
 
 Pivot data longer
 
-
-
 This is a test to make sure I can push something. Here are also some ideas related to what visualizations we want to create. This is district level data. We are interested in investigating/visualizing grade level data to show proficiency scores across general population compared to low SES status -EM
 
 ```{r viz ideas}
@@ -153,4 +151,12 @@ ggplot(averages_df, aes(x = Grade_Level, y = Average_Proficiency)) +
   geom_text(aes(label = round(Average_Proficiency, 1)), vjust = -0.5)
 
 
+```
+
+```{r Research Questions}
+#Research Questions
+#1. Does the Social Economic Status (SES)affect profiency sccores?
+# a)Does the Social Economic Status (SES)affect Math profiency sccores by grade level?
+# b)Does the Social Economic Status (SES)affect Reading profiency sccores?
+  
 ```
