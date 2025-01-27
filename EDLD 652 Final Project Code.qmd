@@ -6,7 +6,6 @@ author: "Aden Bhagwat, Emily Mingus, Erick Njue"
 ---
 
 ```{r load-packages}
-# library(edld652)
 library(here)
 library(edld652)
 library(rio)
@@ -21,6 +20,8 @@ options(modelsummary_factory_latex =
 options(modelsummary_factory_html =
           'kableExtra')
 ```
+
+\
 
 ```{r get-data}
 get_documentation("EDFacts_rla_achievement_lea_2010_2019")
@@ -116,3 +117,5 @@ math_clean <- math_sub %>%
 table(math_clean$all_mth00pctprof, useNA = "ifany")
 mean(math_clean$all_mth00pctprof, na.rm=T)
 ```
+
+Pivot data longer
