@@ -8,6 +8,7 @@ author: "Aden Bhagwat, Emily Mingus, Erick Njue"
 ```{r load-packages}
 # library(edld652)
 library(here)
+library(edld652)
 library(rio)
 library(tidyverse)
 library(janitor)
