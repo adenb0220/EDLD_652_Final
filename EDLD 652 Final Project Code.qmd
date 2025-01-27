@@ -119,3 +119,38 @@ mean(math_clean$all_mth00pctprof, na.rm=T)
 ```
 
 Pivot data longer
+
+
+
+This is a test to make sure I can push something. Here are also some ideas related to what visualizations we want to create. This is district level data. We are interested in investigating/visualizing grade level data to show proficiency scores across general population compared to low SES status -EM
+
+```{r viz ideas}
+
+#histograms
+
+#Excludes the 'leaid' column from the data and calculate averages
+column_averages <- colMeans(math_clean[, -1], na.rm = TRUE)
+
+#Creates the 'Grade_Level' vector with the correct length (16 grades)
+Grade_Level <- c( "1",  "2",  "3",  "4",  "5", 
+                  "6",  "7",  "8", "9", "10", 
+                 "11", "12", "13", "14", "15", "16")
+
+#Ensures the length of Grade_Level matches column_averages
+averages_df <- data.frame(
+  Grade_Level = Grade_Level,
+  Average_Proficiency = column_averages
+)
+
+ggplot(averages_df, aes(x = Grade_Level, y = Average_Proficiency)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Average Math Proficiency by Grade Level",
+    x = "Grade Level",
+    y = "Average Proficiency (%)"
+  ) +
+  geom_text(aes(label = round(Average_Proficiency, 1)), vjust = -0.5)
+
+
+```
