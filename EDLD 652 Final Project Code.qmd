@@ -120,38 +120,51 @@ mean(math_clean$all_mth00pctprof, na.rm=T)
 
 Note: May need to pivot data longer
 
-Below are our research questions:
+### Below are our research questions:
 
-```{r Research Questions}
-#Research Questions
-#1. Does the Social Economic Status (SES)affect profiency sccores?
-# a)Does the Social Economic Status (SES)affect Math profiency sccores by grade level?
-# b)Does the Social Economic Status (SES)affect Reading profiency sccores?
-  
-```
+**Research Question #1:** Does Socioeconomic Status (SES) affect educational proficiency sccores?
 
-Here are also some ideas related to what visualizations we want to create. This is district level data. We are interested in investigating/visualizing grade level data to show proficiency scores across general population compared to low SES status. The audiences will vary and we will want to customize the visuals based on who the intended target is. The scenario may be we are informing district administrators of disparities across schools/grade-level as it relates to proficiency scores. This information would be useful in determining what schools/grade levels may benefit from additional supports to increase proficiency. Based on our research questions above here are some ideas generated during the team meeting.
+If SES affects proficiency scores, then:
+
+**#1a:** Does Socioeconomic Status (SES) affect Math proficiency scores differently by grade level?
+
+**#1b:** Does Socioeconomic Status (SES) affect Reading proficiency scores differently by grade level?
+
+### Visualization Ideas
+
+Here are also some ideas related to what visualizations we want to create. This is district level data. We are interested in investigating/visualizing grade level data to show proficiency scores across general population compared to low SES status. The audiences will vary and we will want to customize the visuals based on who the intended target is.
+
+The scenario may be we are informing district administrators of disparities across schools/grade-level as it relates to proficiency scores. This information would be useful in determining what schools/grade levels may benefit from additional supports to increase proficiency. Based on our research questions above, here are some ideas generated during the team meeting.
 
 For Question 1: Does SES affect proficiency scores?
--Boxplot: Compare Math and Reading proficiency scores across SES groups
--Bar Plot with Error Bars: Show mean proficiency scores (Math and Reading) by SES with error bar
--Violin Plot: Visualize the distribution of proficiency scores by SES
+
+-   Boxplot: Compare Math and Reading proficiency scores across SES groups
+
+-   Bar Plot with Error Bars: Show mean proficiency scores (Math and Reading) by SES with error bar
+
+-   Violin Plot: Visualize the distribution of proficiency scores by SES
 
 For Question 1a: Does SES affect Math proficiency scores by grade level?
--Line Plot: Show Math proficiency trends by grade level for each SES group
--Faceted Bar Plot: Display average Math scores by grade level and SES
--Heatmap: Visualize Math proficiency across SES and grade levels
+
+-   Line Plot: Show Math proficiency trends by grade level for each SES group
+
+-   Faceted Bar Plot: Display average Math scores by grade level and SES
+
+-   Heatmap: Visualize Math proficiency across SES and grade levels
 
 For Question 1b: Does SES affect Reading proficiency scores?
--Side-by-Side Boxplots: Compare Reading proficiency across SES groups for each grade level
--Stacked Bar Chart: Show the distribution of proficiency levels (Math/Reading) by SES
--Grouped Bar Plot: Compare average Reading scores by SES and grade level
+
+-   Side-by-Side Boxplots: Compare Reading proficiency across SES groups for each grade level
+
+-   Stacked Bar Chart: Show the distribution of proficiency levels (Math/Reading) by SES
+
+-   Grouped Bar Plot: Compare average Reading scores by SES and grade level
 
 General Visualizations:
--Scatter Plot: Explore SES vs proficiency scores (Math/Reading)
--Density Plot: Compare distribution of proficiency scores by SES
 
+-   Scatter Plot: Explore SES vs proficiency scores (Math/Reading)
 
+-   Density Plot: Compare distribution of proficiency scores by SES
 
 ```{r viz ideas}
 
@@ -185,12 +198,3 @@ ggplot(averages_df, aes(x = Grade_Level, y = Average_Proficiency)) +
 #second run the x-axis does not look as good, will need fixed
 
 ```
-
-```{r Research Questions}
-#Research Questions
-#1. Does the Social Economic Status (SES)affect profiency sccores?
-# a)Does the Social Economic Status (SES)affect Math profiency sccores by grade level?
-# b)Does the Social Economic Status (SES)affect Reading profiency sccores?
-  
-```
-
