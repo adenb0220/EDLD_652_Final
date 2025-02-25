@@ -116,6 +116,59 @@ math_clean <- math_sub %>%
 
 table(math_clean$all_mth00pctprof, useNA = "ifany")
 mean(math_clean$all_mth00pctprof, na.rm=T)
+
+rm(math_sub, rla_sub)
+
+glimpse(math_clean)
+glimpse(rla_clean)
+
+# Pivot math data
+math_long <- math_clean %>%
+  pivot_longer(cols = -leaid, 
+               names_to = c("group", "grade"), 
+               names_pattern = "(all|ecd)_mth(\\d{2}|hsp)pctprof",
+               values_to = "pctprof") %>%
+  mutate(subject = "math",
+         grade = if_else(grade == "00", "all_grades", grade))
+
+# Pivot rla data
+rla_long <- rla_clean %>%
+  pivot_longer(cols = -leaid, 
+               names_to = c("group", "grade"), 
+               names_pattern = "(all|ecd)_rla(\\d{2}|hsp)pctprof",
+               values_to = "pctprof") %>%
+  mutate(subject = "rla",
+         grade = if_else(grade == "00", "all_grades", grade))
+
+# Combine both datasets
+df <- bind_rows(math_long, rla_long) %>%
+  arrange(leaid, subject, grade, group)
+
+# View final structure
+glimpse(df)
+
+
+# # Count original rows
+# math_rows <- nrow(math_clean)
+# rla_rows <- nrow(rla_clean)
+# 
+# # Count the number of columns being pivoted (excluding 'leaid')
+# num_grades <- (ncol(math_clean) - 1) / 2  # Dividing by 2 for "all" and "ecd"
+# 
+# # Expected row count after pivoting
+# expected_rows <- (math_rows + rla_rows) * num_grades * 2  # Multiply by 2 for subjects
+# 
+# # Actual row count in final_data
+# actual_rows <- nrow(final_data)
+# 
+# # Compare
+# cat("Expected rows:", expected_rows, "\n")
+# cat("Actual rows:", actual_rows, "\n")
+# 
+# # Check if they match
+# expected_rows == actual_rows  # Should be TRUE
+
+rm(math_clean, rla_clean, math_long, rla_long)
 ```
 
 Note: May need to pivot data longer
@@ -140,7 +193,130 @@ For Question 1: Does SES affect proficiency scores?
 
 -   Boxplot: Compare Math and Reading proficiency scores across SES groups
 
+    ```{r}
+
+    df %>% 
+      filter(subject=="math") %>% 
+      filter(grade!="all_grades") %>% 
+      na.omit() %>%  
+      ggplot(aes(x=group, y=pctprof))+
+      # geom_boxplot(aes(fill=grade))+
+      geom_boxplot()+
+      theme_minimal()+
+      scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+      labs(x="Economic Status", y="Percent Proficient", title= "Percent of Students Proficient in Math, by Grade Level and Economic Status", fill="Grade Level")
+
+    df %>% 
+      filter(subject=="math") %>% 
+      filter(grade=="all_grades") %>% 
+      na.omit() %>%  
+      ggplot(aes(x=group, y=pctprof))+
+      geom_boxplot()+
+      theme_minimal()+
+      scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+      labs(x="Economic Status", y="Percent Proficient", title= "Percent of All Grade Level Students Proficient in Math, by Economic Status")
+
+
+
+    df %>% 
+      filter(subject=="rla") %>% 
+      filter(grade!="all_grades") %>% 
+      na.omit() %>%  
+      ggplot(aes(x=group, y=pctprof))+
+      geom_boxplot(aes(fill=grade))+
+      theme_minimal()+
+      scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+
+      labs(x="Economic Status", y="Percent Proficient", title= "Percent of Students Proficient in Reading and Language Arts, by Grade Level and Economic Status", fill="Grade Level")
+
+    df %>% 
+      filter(subject=="rla") %>% 
+      filter(grade=="all_grades") %>% 
+      na.omit() %>%  
+      ggplot(aes(x=group, y=pctprof))+
+      geom_boxplot()+
+      theme_minimal()+
+      scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+      labs(x="Economic Status", y="Percent Proficient", title= "Percent of All Grade Level Students Proficient in Reading and Language Arts, by Economic Status")
+    ```
+
 -   Bar Plot with Error Bars: Show mean proficiency scores (Math and Reading) by SES with error bar
+
+    ```{r}
+
+    df %>% 
+      filter(subject == "math", grade != "all_grades", !is.na(pctprof)) %>%
+      group_by(grade, group) %>%  # Group by grade and economic status
+      summarise(
+        avg_pctprof = mean(pctprof, na.rm = TRUE),
+        .groups = "drop"  # Drop grouping after summarizing
+      ) %>%
+      ggplot(aes(x = grade, y = avg_pctprof, fill = group)) +  # Map 'group' to fill color
+      geom_col(position = "dodge") +  # Bar plot
+    geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
+                position = position_dodge(width = 1),  # Adjust text position to match bars
+                vjust = -0.7,  # Position text above bars
+                color = "black", 
+                fontface = "bold",
+              size= 3.5) +  # Bold text
+      scale_y_continuous(limits = c(0, 100)) +  scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
+      labs(
+        title = "Average Math Proficiency Percentage by Grade and Economic Status",
+        x = "Grade",
+        y = "Average Proficiency Percentage (%)", 
+        fill = "Economic Status"
+      ) +
+      scale_fill_manual(
+        values = c("all" = "red", "ecd" = "blue"),  # Optional: Customize colors
+        labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")  # Custom legend labels
+      ) +
+      theme_minimal()
+
+
+
+
+    df %>% 
+      filter(subject == "rla", grade != "all_grades", !is.na(pctprof)) %>%
+      group_by(grade, group) %>%  # Group by grade and economic status
+      summarise(
+        avg_pctprof = mean(pctprof, na.rm = TRUE),
+        .groups = "drop"  # Drop grouping after summarizing
+      ) %>%
+      ggplot(aes(x = grade, y = avg_pctprof, fill = group)) +  # Map 'group' to fill color
+      geom_col(position = "dodge") +  # Bar plot
+    geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
+                position = position_dodge(width = 1),  # Adjust text position to match bars
+                vjust = -0.7,  # Position text above bars
+                color = "black", 
+                fontface = "bold",
+              size= 3.5) +  # Bold text
+      scale_y_continuous(limits = c(0, 100)) +  scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
+      labs(
+        title = "Average Reading and Language Arts Proficiency Percentage by Grade and Economic Status",
+        x = "Grade",
+        y = "Average Proficiency Percentage (%)", 
+        fill = "Economic Status"
+      ) +
+      scale_fill_manual(
+        values = c("all" = "red", "ecd" = "blue"),  # Optional: Customize colors
+        labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")  # Custom legend labels
+      ) +
+      theme_minimal()
+
+
+    df %>%
+      filter(!is.na(pctprof)) %>%  # Remove NA values for accurate calculations
+      group_by(subject, group, grade) %>%  # Group by subject, group, and grade
+      summarise(
+        mean_pctprof = mean(pctprof, na.rm = TRUE),
+        median_pctprof = median(pctprof, na.rm = TRUE),
+        mode_pctprof = as.numeric(names(sort(table(pctprof), decreasing = TRUE))[1]),
+        .groups = "drop"  # Drop grouping after summarizing
+      )%>% 
+      print(n = Inf)
+
+
+    ```
 
 -   Violin Plot: Visualize the distribution of proficiency scores by SES
 
