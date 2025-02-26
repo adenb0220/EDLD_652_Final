@@ -1,12 +1,22 @@
 name: "."
-title: "My Distill Blog"
+title: "Final Project"
 description: |
-  My Distill Blog
-output_dir: "docs"
+  EDLD 652
+output_dir: "docs"  # The output directory for GitHub Pages
+
 navbar:
   right:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
-output: distill::distill_article
+
+output: 
+  distill::distill_article  # Output format for blog posts
+
+# GitHub Pages setup
+github_url: "https://github.com/adenb0220/EDLD_652_Final/"  # Your GitHub repository URL
+url: "https://adenb0220.github.io/EDLD_652_Final/" 
+
+author:
+  name: "Aden Bhagwat, Emily Mingus, Erick Ndjue"
