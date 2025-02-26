@@ -5,15 +5,15 @@
     "description": "Welcome to our new blog, My Distill Blog. We hope you enjoy \nreading what we have to say!",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
+        "url": "https://adenb0220.github.io/EDLD_652_Final/"
       }
     ],
     "date": "2025-02-26",
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2025-02-26T15:29:35-08:00",
-    "input_file": {}
+    "last_modified": "2025-02-26T15:44:40-08:00",
+    "input_file": "welcome.knit.md"
   }
 ]
