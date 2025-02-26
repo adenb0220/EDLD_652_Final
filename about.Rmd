@@ -1,5 +1,5 @@
 ---
-title: "About this blog"
+title: "PLACEHOLDER FOR DATA INFO AND DEMOGRAPHICS"
 description: |
   Some additional details about the blog
 ---

@@ -1,5 +1,5 @@
 ---
-title: "My Distill Blog"
+title: "EDLD 652 Website"
 site: distill::distill_website
 listing: posts
 ---

@@ -2,18 +2,18 @@
   "articles": [
     {
       "path": "about.html",
-      "title": "About this blog",
+      "title": "PLACEHOLDER FOR DATA INFO AND DEMOGRAPHICS",
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-02-26T15:29:48-08:00"
+      "last_modified": "2025-02-26T15:52:06-08:00"
     },
     {
       "path": "index.html",
-      "title": "My Distill Blog",
+      "title": "EDLD 652 Website",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-02-26T15:29:50-08:00"
+      "last_modified": "2025-02-26T15:52:07-08:00"
     }
   ],
   "collections": ["posts/posts.json"]

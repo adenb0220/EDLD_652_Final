@@ -6,6 +6,8 @@ author: "Aden Bhagwat, Emily Mingus, Erick Njue"
 ---
 
 ```{r load-packages}
+# distill::create_blog(dir = ".", title = "My Distill Blog", gh_pages = TRUE)
+
 library(here)
 library(edld652)
 library(rio)
