@@ -16,8 +16,13 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r}
+library(rio)
+library(here)
+library(tidyverse)
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+df<-import(here("Data/clean_data.csv"))
+
+```
 
 

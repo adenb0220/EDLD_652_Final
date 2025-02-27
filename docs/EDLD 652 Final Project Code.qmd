@@ -171,6 +171,8 @@ glimpse(df)
 # expected_rows == actual_rows  # Should be TRUE
 
 rm(math_clean, rla_clean, math_long, rla_long)
+
+# export(df, here("Data", "clean_data.csv"))
 ```
 
 Note: May need to pivot data longer
