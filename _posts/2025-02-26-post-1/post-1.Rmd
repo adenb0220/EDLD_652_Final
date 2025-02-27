@@ -23,6 +23,38 @@ library(tidyverse)
 
 df<-import(here("Data/clean_data.csv"))
 
+df %>%
+  filter(subject == "math", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%  # Remove empty and 'all_grades' levels
+  mutate(grade = factor(grade)) %>%  # Convert 'grade' to factor
+  mutate(grade = droplevels(grade)) %>%  # Drop unused factor levels
+  group_by(grade, group) %>%  # Group by grade and economic status
+  summarise(
+    avg_pctprof = mean(pctprof, na.rm = TRUE),
+    .groups = "drop"  # Drop grouping after summarizing
+  ) %>%
+  ggplot(aes(x = grade, y = avg_pctprof, fill = group)) +  # Map 'group' to fill color
+  geom_col(position = "dodge") +  # Bar plot
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
+            position = position_dodge(width = 1),  # Adjust text position to match bars
+            vjust = -0.7,  # Position text above bars
+            color = "black", 
+            fontface = "bold",
+            size = 3.5) +  # Bold text
+  scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
+  labs(
+    title = "Average Math Proficiency Percentage by Grade and Economic Status",
+    x = "Grade",
+    y = "Average Proficiency Percentage (%)", 
+    fill = "Economic Status"
+  ) +
+  scale_fill_manual(
+    values = c("all" = "red", "ecd" = "blue"),  # Customize colors
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")  # Custom legend labels
+  ) +
+  theme_minimal()
+
+
+
 ```
 
 
