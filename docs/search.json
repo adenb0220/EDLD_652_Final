@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-05T14:45:10-08:00"
+      "last_modified": "2025-03-05T15:05:44-08:00"
     },
     {
       "path": "index.html",
       "title": "EDLD 652 Website",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-05T14:45:11-08:00"
+      "last_modified": "2025-03-05T15:05:45-08:00"
     }
   ],
   "collections": ["posts/posts.json"]

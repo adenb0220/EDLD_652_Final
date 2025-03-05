@@ -20,3 +20,5 @@ url: "https://adenb0220.github.io/EDLD_652_Final/"
 
 author:
   name: "Aden Bhagwat, Emily Mingus, Erick Ndjue"
+  
+theme: style.css
