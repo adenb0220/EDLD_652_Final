@@ -248,7 +248,7 @@ For Question 1: Does SES affect proficiency scores?
 
     ```{r}
 
-    df %>% 
+    df %>%
       filter(subject == "math", grade != "all_grades", !is.na(pctprof)) %>%
       group_by(grade, group) %>%  # Group by grade and economic status
       summarise(
@@ -257,13 +257,13 @@ For Question 1: Does SES affect proficiency scores?
       ) %>%
       ggplot(aes(x = grade, y = avg_pctprof, fill = group)) +  # Map 'group' to fill color
       geom_col(position = "dodge") +  # Bar plot
-    geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
+      geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
                 position = position_dodge(width = 1),  # Adjust text position to match bars
                 vjust = -0.7,  # Position text above bars
                 color = "black", 
                 fontface = "bold",
-              size= 3.5) +  # Bold text
-      scale_y_continuous(limits = c(0, 100)) +  scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
+                size = 3.5) +  # Bold text
+      scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
       labs(
         title = "Average Math Proficiency Percentage by Grade and Economic Status",
         x = "Grade",
@@ -271,7 +271,7 @@ For Question 1: Does SES affect proficiency scores?
         fill = "Economic Status"
       ) +
       scale_fill_manual(
-        values = c("all" = "red", "ecd" = "blue"),  # Optional: Customize colors
+        values = c("all" = "red", "ecd" = "blue"),  # Customize colors
         labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")  # Custom legend labels
       ) +
       theme_minimal()
