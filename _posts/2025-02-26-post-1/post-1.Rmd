@@ -1,7 +1,7 @@
 ---
-title: "Post 1"
+title: "Math Proficiency"
 description: |
-  A short description of the post.
+  Math Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.
 author:
   - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
     url: https://adenb0220.github.io/EDLD_652_Final/
@@ -39,7 +39,7 @@ df %>%
             vjust = -0.7,  # Position text above bars
             color = "black", 
             fontface = "bold",
-            size = 3.5) +  # Bold text
+            size = 2) +  # Bold text
   scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
   labs(
     title = "Average Math Proficiency Percentage by Grade and Economic Status",

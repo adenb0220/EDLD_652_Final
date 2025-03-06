@@ -1,7 +1,7 @@
-name: "."
+name: "EDLD 652"
 title: "Final Project"
 description: |
-  EDLD 652
+  Differences in Reading and Math Proficiency by Economic Status
 output_dir: "docs"  # The output directory for GitHub Pages
 
 navbar:
