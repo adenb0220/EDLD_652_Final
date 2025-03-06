@@ -242,6 +242,7 @@ For Question 1: Does SES affect proficiency scores?
       theme_minimal()+
       scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
       labs(x="Economic Status", y="Percent Proficient", title= "Percent of All Grade Level Students Proficient in Reading and Language Arts, by Economic Status")
+
     ```
 
 -   Bar Plot with Error Bars: Show mean proficiency scores (Math and Reading) by SES with error bar

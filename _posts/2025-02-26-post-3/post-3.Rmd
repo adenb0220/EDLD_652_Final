@@ -1,7 +1,7 @@
 ---
-title: "Post 3"
+title: "Demographics"
 description: |
-  A short description of the post.
+  ECD students as a part of All Students.
 author:
   - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
     url: https://adenb0220.github.io/EDLD_652_Final/
@@ -16,8 +16,26 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r}
+library(rio)
+library(here)
+library(tidyverse)
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+df<-import(here("Data/clean_data.csv"))
+
+glimpse(df)
+
+df %>%
+  group_by(leaid, grade, subject, group) %>%
+  summarise(pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%  # Aggregate first
+  pivot_wider(names_from = group, values_from = pctprof) %>%
+  mutate(gap = all - ecd) %>%
+  ggplot(aes(x = grade, y = gap, fill = subject)) +
+  geom_col(position = "dodge") +
+  labs(title = "Achievement Gap by Grade",
+       x = "Grade",
+       y = "Proficiency Gap (All - ECD)",
+       fill = "Subject") +
+  theme_minimal()
 
 
