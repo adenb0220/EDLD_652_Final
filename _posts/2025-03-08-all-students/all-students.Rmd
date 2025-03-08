@@ -1,9 +1,9 @@
 ---
 title: "All Students"
 description: |
-  A short description of the post.
+ Prociency Scores: Compring all students to economically disadvantaged students
 author:
-  - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
+  - name: Aden Bhagwat, Emily Mingus, Erick Njue
     url: https://adenb0220.github.io/EDLD_652_Final/
 date: 2025-03-08
 output:
@@ -11,13 +11,102 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(rio)
+library(here)
+library(tidyverse)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r}
+df<-import(here("Data/clean_data.csv"))
+```
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+To answer question 1 that examines the relationship between economic status or Social Economic Status (SES) and the proficiency scores, we first examine the relationship between the proficiency scores of all the students and those of students from economically disadvantaged students. Figure 1 shows the Math proficiency scores of all the students against those of economically disadvantaged students and Figure 2 shows the mean percent of the students in Math by their economic status. The Math proficiency for economically disadvantaged students is lower than that of all students. 
+
+**Figure 1**
+
+```{r}
+df %>% 
+  filter(subject == "math") %>% 
+  filter(grade != "all_grades") %>% 
+  filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
+  na.omit() %>%  
+  ggplot(aes(x = group, y = pctprof)) +
+  geom_boxplot(aes(fill = group)) +  # Color by group for clarity
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  labs(
+    x = "Economic Status",
+    y = "Percent Proficient",
+    title = "Percent of Students Proficient in Math by Economic Status",
+    fill = "Student Group"
+  )+
+  theme(legend.position = "none")
+```
+
+**Figure 2**
+
+```{r}
+df %>%
+  filter(subject == "math") %>%
+  filter(grade != "all_grades") %>%
+  filter(group %in% c("all", "ecd")) %>%
+  na.omit() %>%
+  ggplot(aes(x = group, y = pctprof, fill = group)) +
+  stat_summary(fun = mean, geom = "bar", position = "dodge") +  # Calculate mean
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  labs(
+    x = "Economic Status",
+    y = "Mean Percent Proficient",
+    title = "Mean Percent of Students Proficient in Math by Economic Status",
+    fill = "Student Group")+
+ theme(legend.position = "none") 
+```
+
+Figure 3 shows the Reading proficiency scores of all the students against those of economically disadvantaged students and Figure 4 shows shows the mean percent of the students in Reading by their economic status. All students perform better than economically disadvantaged students.
+
+**Figure 3**
+```{r}
+df %>% 
+  filter(subject == "rla") %>%  # Filter for reading proficiency
+  filter(grade != "all_grades") %>% 
+  filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
+  na.omit() %>%  
+  ggplot(aes(x = group, y = pctprof)) +
+  geom_boxplot(aes(fill = group)) +  # Color by group for better distinction
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  labs(
+    x = "Economic Status",
+    y = "Percent Proficient",
+    title = "Percent of Students Proficient in Reading by Economic Status",
+    fill = "Student Group"
+  )+
+  theme(legend.position = "none")
+
+```
+
+**Figure 4**
+
+```{r}
+df %>% 
+  filter(subject == "rla") %>%  # Filter for reading proficiency
+  filter(grade != "all_grades") %>% 
+  filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
+  na.omit() %>%  
+  ggplot(aes(x = group, y = pctprof, fill = group)) +
+  stat_summary(fun = mean, geom = "bar", position = "dodge") +  # Bar plot with mean values
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  labs(
+    x = "Economic Status",
+    y = "Mean Percent Proficient",
+    title = "Mean Percent of Students Proficient in Reading by Economic Status",
+    fill = "Student Group"
+  )+
+  theme(legend.position = "none")
+```
 
 
