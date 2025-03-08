@@ -7,11 +7,3 @@ description: |
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-
-**AUTHORS**
-
-```{r}
-knitr::include_graphics("Images/IMG_6276 2.jpg")
-```
-
-Erick Munene Njue is a doctoral student in Special Education and a former high school teacher in Kenya. He holds a bachelor’s degree in education, linguistics, and literature from the University of Nairobi and a Master of Science in education policy and leadership from the University of Oregon. He is interested in education policy for dually identified students, inclusive education and identification, and the referral and assessment of dually identified students. He is involved in research on the Inclusive Skill-Building Learning Approach (ISLA) to reduce the school-to-prison pipeline and enhancing adolescents' literacy skills in juvenile detention.
