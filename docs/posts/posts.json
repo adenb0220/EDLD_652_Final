@@ -11,9 +11,9 @@
     ],
     "date": "2025-03-05",
     "categories": [],
-    "contents": "\n\n\n=======\n\n>>>>>>> Stashed changes\n\n\n\n\n",
+    "contents": "\r\n\r\n<<<<<<< Updated upstream\r\n\r\n=======\r\n\r\n>>>>>>> Stashed changes\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-26-post-1/post-1_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2025-03-08T11:42:21-08:00",
+    "last_modified": "2025-03-08T12:22:48-08:00",
     "input_file": {}
   },
   {
@@ -28,9 +28,9 @@
     ],
     "date": "2025-02-26",
     "categories": [],
-    "contents": "\n\n\n\n\n\n\n",
+    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-26-post-2/post-2_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2025-03-08T11:16:31-08:00",
+    "last_modified": "2025-03-05T16:02:19-08:00",
     "input_file": {}
   },
   {
@@ -45,9 +45,9 @@
     ],
     "date": "2025-02-26",
     "categories": [],
-    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2025-02-26T15:53:37-08:00",
+    "last_modified": "2025-02-26T15:51:57-08:00",
     "input_file": {}
   },
   {
@@ -62,9 +62,9 @@
     ],
     "date": "2025-02-26",
     "categories": [],
-    "contents": "\n\n\n\n",
+    "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2025-02-26T15:53:37-08:00",
+    "last_modified": "2025-02-26T15:44:41-08:00",
     "input_file": {}
   }
 ]

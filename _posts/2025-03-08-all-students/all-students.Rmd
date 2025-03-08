@@ -1,0 +1,23 @@
+---
+title: "All Students"
+description: |
+  A short description of the post.
+author:
+  - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
+    url: https://adenb0220.github.io/EDLD_652_Final/
+date: 2025-03-08
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
