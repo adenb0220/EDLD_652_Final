@@ -1,7 +1,7 @@
 ---
-title: "Math Proficiency"
+title: "Reading Proficiency by Grade Level"
 description: |
-  Math Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.
+  Reading Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.
 author:
   - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
     url: https://adenb0220.github.io/EDLD_652_Final/
@@ -16,45 +16,210 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r}
+As discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme. 
+
+```{r, fig.show = 'hold'}
 library(rio)
 library(here)
 library(tidyverse)
 
 df<-import(here("Data/clean_data.csv"))
 
+#lollipop 1
 df %>%
-  filter(subject == "math", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%  # Remove empty and 'all_grades' levels
-  mutate(grade = factor(grade)) %>%  # Convert 'grade' to factor
-  mutate(grade = droplevels(grade)) %>%  # Drop unused factor levels
-  group_by(grade, group) %>%  # Group by grade and economic status
-  summarise(
-    avg_pctprof = mean(pctprof, na.rm = TRUE),
-    .groups = "drop"  # Drop grouping after summarizing
-  ) %>%
-  ggplot(aes(x = grade, y = avg_pctprof, fill = group)) +  # Map 'group' to fill color
-  geom_col(position = "dodge") +  # Bar plot
-  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  # Add '%' to the label
-            position = position_dodge(width = 1),  # Adjust text position to match bars
-            vjust = -0.7,  # Position text above bars
-            color = "black", 
-            fontface = "bold",
-            size = 2) +  # Bold text
-  scale_y_continuous(limits = c(0, 100)) +  # Set y-axis limits from 0 to 100
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+          hjust = 1,  
+          vjust = -1.5,   
+          size = 3.5,    
+          fontface = "bold",
+          show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
   labs(
-    title = "Average Math Proficiency Percentage by Grade and Economic Status",
-    x = "Grade",
-    y = "Average Proficiency Percentage (%)", 
-    fill = "Economic Status"
-  ) +
-  scale_fill_manual(
-    values = c("all" = "red", "ecd" = "blue"),  # Customize colors
-    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")  # Custom legend labels
+    title = "Reading Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)",
+    color = "Economic Status")+
+  scale_color_manual(
+    values = c("all" = "#1b9e77", "ecd" = "#d95f02"),
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")
   ) +
   theme_minimal()
 
+```
+
+<br>
+
+<div style="text-align: center;">
+
+We then decided to try making the graph color blind friendly. We added the viridis color palette but ran into an issue, each viridis palette (magma, plasma, etc.) has a bright yellow color that is very washed out on a minimal theme. We tried adding a dark theme, but that was not very aesthetically pleasing and the darker numbers were difficult to read. 
+</div>
+<br><br>
+```{r, fig.show = 'hold'}
+df %>%
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+            hjust = 1,  
+            vjust = -1.5,   
+            size = 3.5,    
+            fontface = "bold",
+            show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
+  labs(
+    title = "Reading Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)",
+    color = "Economic Status"
+  ) +
+  scale_color_viridis_d(
+    option="magma",
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")
+  ) +
+  theme_minimal()
+
+df %>%
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+            hjust = 1,  
+            vjust = -1.5,   
+            size = 3.5,    
+            fontface = "bold",
+            show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
+  labs(
+    title = "Reading Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)",
+    color = "Economic Status"
+  ) +
+  scale_color_viridis_d(
+    option="magma",
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")
+  ) +
+  theme_dark()
 
 
 ```
 
+<div style="text-align: center;">
+We realized we could set a beginning and end to the viridis colors, which could eliminate the bright yellow and make the graph more friendly for colorblind and non-colorblind viewers. This also allowed us to keep the theme_minimal(), which matched better with the rest of our blog. We kept playing with the beginning and end values until we were satisfied that the colors looked good while still remaining accessible. As final touches, we adjusted the legend to be horizontal and near the top. 
+</div><br>
+```{r}
+df %>%
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+            hjust = 1,  
+            vjust = -1.5,   
+            size = 3.5,    
+            fontface = "bold",
+            show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_discrete(labels = function(x) gsub("^0", "", x)) +
+  labs(
+    title = "Reading Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)"
+  ) +
+  scale_color_viridis_d(
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students"),
+    begin = 0.1,
+    end = 0.5
+  ) +
+  guides(color = guide_legend(title = NULL, 
+                              reverse = TRUE)) +  # Swapping the order of the legend labels
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    legend.direction = "horizontal",
+    legend.justification = "left",
+    legend.title.position = "top",
+    legend.spacing.x = unit(5, "lines"),  # Space between legend items
+    legend.spacing.y = unit(1, "lines"),  # Vertical space between legend and plot
+    legend.margin = margin(t = -5)  # Adds space between the legend and the plot
+  )
+
+
+
+
+
+```
+<br><br>
+<div style="text-align: center;">
+Finally, we used a colorblind function to check that our graph would be accessible for different types of colorblindness. We simplified the text in the grpah to focus on the color changes, and then used the function. This satisfied our color choices, because each group was still separately identifiable, so we decided to keep our final graph as is. 
+</div><br>
+```{r}
+library(colorblindr)
+p <- df %>%
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 0.8) +  # Smaller lines
+  geom_point(size = 3) +  # Smaller points
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_discrete(labels = function(x) gsub("^0", "", x)) +
+  labs(
+    y = "Grade",
+    x = "Average Proficiency (%)"
+  ) +
+  scale_color_viridis_d(
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students"),
+    begin = 0.1,
+    end = 0.5
+  ) +
+  guides(color = guide_legend(title = NULL)) +  # Removes the legend title
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    legend.direction = "horizontal",
+    legend.justification = "left",
+    legend.title.position = "top",
+    legend.spacing.x = unit(5, "lines"),  # Space between legend items
+    legend.spacing.y = unit(1, "lines"),  # Vertical space between legend and plot
+    legend.margin = margin(t = -5),  # Adds space between the legend and the plot
+    plot.margin = margin(t = 20, b = 20),  # Increase margins for clarity
+    axis.text.x = element_text(size = 10),  # Smaller axis text
+    axis.text.y = element_text(size = 10),  # Smaller axis text
+    axis.title.x = element_text(size = 12),  # Smaller x-axis title
+    axis.title.y = element_text(size = 12),  # Smaller y-axis title
+    plot.title = element_text(size = 14)  # Smaller title
+  )
+
+# Display the plot
+cvd_grid(p)
+
+
+
+
+```
 

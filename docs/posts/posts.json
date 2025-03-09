@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/2025-02-26-post-1/",
-    "title": "Math Proficiency",
-    "description": "Math Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
+    "title": "Reading Proficiency by Grade Level",
+    "description": "Reading Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
     "author": [
       {
         "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
@@ -11,15 +11,15 @@
     ],
     "date": "2025-03-05",
     "categories": [],
-    "contents": "\r\n\r\n<<<<<<< Updated upstream\r\n\r\n=======\r\n\r\n>>>>>>> Stashed changes\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\nAs discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme.\r\n\r\n\r\n\r\n\r\n\r\nWe then decided to try making the graph color blind friendly. We added the viridis color palette but ran into an issue, each viridis palette (magma, plasma, etc.) has a bright yellow color that is very washed out on a minimal theme. We tried adding a dark theme, but that was not very aesthetically pleasing and the darker numbers were difficult to read.\r\n\r\n\r\n\r\n\r\n\r\nWe realized we could set a beginning and end to the viridis colors, which could eliminate the bright yellow and make the graph more friendly for colorblind and non-colorblind viewers. This also allowed us to keep the theme_minimal(), which matched better with the rest of our blog. We kept playing with the beginning and end values until we were satisfied that the colors looked good while still remaining accessible. As final touches, we adjusted the legend to be horizontal and near the top.\r\n\r\n\r\n\r\n\r\n\r\nFinally, we used a colorblind function to check that our graph would be accessible for different types of colorblindness. We simplified the text in the grpah to focus on the color changes, and then used the function. This satisfied our color choices, because each group was still separately identifiable, so we decided to keep our final graph as is.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-26-post-1/post-1_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2025-03-08T12:22:48-08:00",
+    "last_modified": "2025-03-08T17:06:48-08:00",
     "input_file": {}
   },
   {
     "path": "posts/2025-02-26-post-2/",
-    "title": "Reading Proficiency",
-    "description": "Reading Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
+    "title": "Math Proficiency by Grade Level",
+    "description": "Math Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
     "author": [
       {
         "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
@@ -28,26 +28,9 @@
     ],
     "date": "2025-02-26",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nAs our previous plot revealed that there are discrepancies between economically disadvantaged (ECD) students and the total student population in terms of reading and math proficiency, we decided to examine whether this trend differed by grade level. Our dataset included scores from 3rd grade to 8th grade, so we decided to look longitudinally for any changes in the proficiency gap between ECD and all students. We were especially curious if the gap would widen or narrow as students progress in school.\r\n\r\n\r\n\r\n\r\n\r\nWe started with a side by side bar graph, which seemed like the most straightforward way to display our desired information. This took a decent amount of data cleaning and filtering to accomplish, because our data also included a variable for ‘all grade levels.’ We also had to summarize averages and group variables to get our desired graph. While effective, the side by side plot did not highlight changes over time, but instead treated each grade as a separate comparison. We were able to add floating percentages for more precision, but the graph feels fairly crowded and busy. It is also difficult to visually identify any changes from grade to grade. While this is somewhat fine because changes are very small, it would be nice to be able to see at least a bit of variation more easily.\r\nI then asked ChatGPT for help varying the graph types and colors, to brainstorm ideas for making the graph more aesthetically pleasing and informative. The next graph type created was a line graph. While I liked that the line graph plotted the scores in a way that highlights changes over time, I felt that the y-axis needed to be from 0-100% to avoid falsely inflating the discrepancies between all students and ECD. The downside of this is that there is a lot of white space and the graph is fairly boring.\r\n\r\n\r\n\r\n\r\n\r\nNext we tried a stacked bar plot, to see if that would really demonstrate the gap in proficiency between our two groups. This was visually very confusing, because it makes the gap look much more intense. It is misleading, because it should be read as all students starting where ECD ends, so for example 3rd grade would start around 45% and end around 100%, indicating an average proficiency of about 55%.However, with the y-axis, it looks like all students in 3rd grade have almost a 100% proficiency. We definitely did not want to use this misleading graph.\r\n\r\n\r\n\r\n\r\n\r\n\r\nNext we tried a boxplot to illustrate the variation in each group, while still focusing on the fact that the median for all students is higher than the median for ECD students across each grade level. We also used the viridis palette to make the graph colorblind accessible. However, this graph is really busy and a but hard to interpret. It does include a lot of valuable information about variation and distributions, but may muddle the main point that we want to convey, that ECD students are performing lower on average than all other students.\r\n\r\n\r\n\r\n\r\n\r\nFinally, we tried a lollipop graph. This allowed us to see changes linearly over time by following from top to bottom, and did a nice job of highlighting our major takeaway. Each ECD line is shorter than the “All” line, indicating that there is a discrepancy. We were also able to add floating percentages for precision. The graph is relatively simple and minimal, while still providing information and staying interesting. Using the full 100% scale on the x axis both keeps the discrepancy accurately proportional, and highlights that neither group is more than 57% proficient, which is not ideal.\r\n\r\n\r\n\r\n\r\n\r\n\r\nWe decided that this was the most effective graph, but wanted to play around with the colors, themes, etc. to have it match the rest of our blog and be accessible. Please see the next post to see how we varied this plot to end up with our final product below:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-26-post-2/post-2_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2025-03-05T16:02:19-08:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2025-02-26-post-3/",
-    "title": "Post 3",
-    "description": "A short description of the post.",
-    "author": [
-      {
-        "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
-        "url": "https://adenb0220.github.io/EDLD_652_Final/"
-      }
-    ],
-    "date": "2025-02-26",
-    "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2025-02-26T15:51:57-08:00",
+    "last_modified": "2025-03-08T17:06:40-08:00",
     "input_file": {}
   },
   {
