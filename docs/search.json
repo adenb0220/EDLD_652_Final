@@ -5,15 +5,15 @@
       "title": "PLACEHOLDER FOR DATA INFO AND DEMOGRAPHICS",
       "description": "Some additional details about the blog",
       "author": [],
-      "contents": "\r\nAUTHORS\r\n\r\n\r\n\r\nErick Munene Njue is a doctoral student in Special Education and a former high school teacher in Kenya. He holds a bachelor’s degree in education, linguistics, and literature from the University of Nairobi and a Master of Science in education policy and leadership from the University of Oregon. He is interested in education policy for dually identified students, inclusive education and identification, and the referral and assessment of dually identified students. He is involved in research on the Inclusive Skill-Building Learning Approach (ISLA) to reduce the school-to-prison pipeline and enhancing adolescents’ literacy skills in juvenile detention.\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-08T17:08:01-08:00"
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2025-03-10T12:38:38-07:00"
     },
     {
       "path": "index.html",
       "title": "EDLD 652 Website",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-08T17:08:02-08:00"
+      "last_modified": "2025-03-10T12:38:40-07:00"
     }
   ],
   "collections": ["posts/posts.json"]
