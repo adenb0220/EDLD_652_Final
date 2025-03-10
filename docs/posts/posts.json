@@ -1,7 +1,61 @@
 [
   {
+<<<<<<< Updated upstream
+=======
+    "path": "posts/2025-02-26-post-1/",
+    "title": "Math Proficiency",
+    "description": "Math Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
+    "author": [
+      {
+        "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
+        "url": "https://adenb0220.github.io/EDLD_652_Final/"
+      }
+    ],
+    "date": "2025-03-05",
+    "categories": [],
+    "contents": "\n\n\n=======\n\n>>>>>>> Stashed changes\n\n\n\n\n",
+    "preview": "posts/2025-02-26-post-1/post-1_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2025-03-08T12:22:49-08:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2025-02-26-post-2/",
+    "title": "Reading Proficiency",
+    "description": "Reading Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.",
+    "author": [
+      {
+        "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
+        "url": "https://adenb0220.github.io/EDLD_652_Final/"
+      }
+    ],
+    "date": "2025-02-26",
+    "categories": [],
+    "contents": "\n\n\n\n\n\n\n",
+    "preview": "posts/2025-02-26-post-2/post-2_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2025-03-08T12:03:05-08:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2025-02-26-post-3/",
+    "title": "Post 3",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
+        "url": "https://adenb0220.github.io/EDLD_652_Final/"
+      }
+    ],
+    "date": "2025-02-26",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-02-26T15:52:53-08:00",
+    "input_file": {}
+  },
+  {
+>>>>>>> Stashed changes
     "path": "posts/welcome/",
-    "title": "Welcome to My Distill Blog",
+    "title": "Introduction",
     "description": "Welcome to our new blog, My Distill Blog. We hope you enjoy \nreading what we have to say!",
     "author": [
       {
@@ -11,6 +65,7 @@
     ],
     "date": "2025-03-04",
     "categories": [],
+<<<<<<< Updated upstream
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
     "last_modified": "2025-03-10T12:38:00-07:00",
@@ -65,6 +120,11 @@
     "contents": "\r\nAs discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme.\r\n\r\n\r\n\r\n\r\n\r\nWe then decided to try making the graph color blind friendly. We added the viridis color palette but ran into an issue, each viridis palette (magma, plasma, etc.) has a bright yellow color that is very washed out on a minimal theme. We tried adding a dark theme, but that was not very aesthetically pleasing and the darker numbers were difficult to read.\r\n\r\n\r\n\r\n\r\n\r\nWe realized we could set a beginning and end to the viridis colors, which could eliminate the bright yellow and make the graph more friendly for colorblind and non-colorblind viewers. This also allowed us to keep the theme_minimal(), which matched better with the rest of our blog. We kept playing with the beginning and end values until we were satisfied that the colors looked good while still remaining accessible. As final touches, we adjusted the legend to be horizontal and near the top.\r\n\r\n\r\n\r\n\r\n\r\nFinally, we used a colorblind function to check that our graph would be accessible for different types of colorblindness. We simplified the text in the grpah to focus on the color changes, and then used the function. This satisfied our color choices, because each group was still separately identifiable, so we decided to keep our final graph as is.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-26-post-1/post-1_files/figure-html5/unnamed-chunk-1-1.png",
     "last_modified": "2025-03-10T12:38:35-07:00",
+=======
+    "contents": "\nIntroduction\nThis is our dataset\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-03-08T12:33:34-08:00",
+>>>>>>> Stashed changes
     "input_file": {}
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER FOR DATA INFO AND DEMOGRAPHICS"
+title: "About Our Research Endevour"
 description: |
   Some additional details about the blog
 ---
