@@ -1,7 +1,7 @@
 ---
 title: "Analyzing Educational Proficiency Data"
 description: |
-  This article explores trends in student proficiency in 
+  This research explores trends in student proficiency in 
   reading/language arts (RLA) and math across U.S. school districts, 
   focusing on the impact of socioeconomic status (SES). 
   We address data inconsistencies and missingness while 
@@ -15,14 +15,30 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-**Introduction**
+# Introduction
+Socioeconomic status (SES) has been shown to be a strong predictor of long-term success in reading and other academic outcomes. Studies suggest that children from lower SES backgrounds often face barriers to academic achievement, particularly in foundational areas like reading. Research has indicated that disparities in reading proficiency can impact long-term academic and life outcomes (see [PMC article on SES and reading](https://pmc.ncbi.nlm.nih.gov/articles/PMC9588575/)). Additionally, the American Psychological Association highlights the influence of SES on learning, noting that educational gaps tied to socioeconomic status can persist throughout a child’s educational trajectory.
 
-This is our dataset 
+Given these findings, our research aims to more closely examine how SES affects student proficiency across different grade levels in reading and math, and to identify where interventions may be needed most. We will also explore how SES-related trends in achievement can inform policy decisions at the district level, particularly focusing on whether there are grade levels where these disparities are more pronounced. If patterns emerge, these insights could be critical for guiding educational interventions and policies aimed at reducing achievement gaps within districts.
+
+## Research Questions  
+Our study focuses on understanding how socioeconomic status (SES) affects educational proficiency in reading/language arts (RLA) and math. Specifically, we aim to answer the following questions:
+
+1. **How does SES affect student proficiency in math across different grade levels?**
+2. **How does SES affect student proficiency in reading/language arts (RLA) across different grade levels?**
+3. **Are there consistent trends over time that highlight disparities between economically disadvantaged (ECD) students and all students?**
+
+## Demographic Information  
+We analyzed data from a substantial number of school districts (LEAs) across the U.S., spanning a variety of grade levels and proficiency categories. Specifically:
+
+- **Total number of school districts**: [Insert number of districts]
+- **Total number of participants**: [Insert number of participants]
+- **Grades represented**: [Insert grade levels, e.g., "Kindergarten through 12th grade"]
+- **Student groups**: Data is compared between economically disadvantaged (ECD) students and all students.
+
+This dataset provides valuable insights into the role of socioeconomic status in educational outcomes, and we are excited to dive into the analysis!
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
 
 ```
 

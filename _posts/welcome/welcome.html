@@ -18,12 +18,79 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
 
 
   <!--radix_placeholder_meta_tags-->
   <title>Analyzing Educational Proficiency Data</title>
 
-  <meta property="description" itemprop="description" content="This article explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
+  <meta property="description" itemprop="description" content="This research explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
 
 
   <!--  https://schema.org/Article -->
@@ -34,19 +101,19 @@
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Analyzing Educational Proficiency Data"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="This article explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
+  <meta property="og:description" content="This research explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Analyzing Educational Proficiency Data"/>
-  <meta property="twitter:description" content="This article explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
+  <meta property="twitter:description" content="This research explores trends in student proficiency in &#10;reading/language arts (RLA) and math across U.S. school districts, &#10;focusing on the impact of socioeconomic status (SES). &#10;We address data inconsistencies and missingness while &#10;preparing the dataset for analysis."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Analyzing Educational Proficiency Data"]},{"type":"character","attributes":{},"value":["This article explores trends in student proficiency in \nreading/language arts (RLA) and math across U.S. school districts, \nfocusing on the impact of socioeconomic status (SES). \nWe address data inconsistencies and missingness while \npreparing the dataset for analysis.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Aden Bhagwat, Emily Mingus, Erick Ndjue"]},{"type":"character","attributes":{},"value":["https://adenb0220.github.io/EDLD_652_Final/"]},{"type":"character","attributes":{},"value":["University of Oregon"]}]}]},{"type":"character","attributes":{},"value":["03-04-2025"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Analyzing Educational Proficiency Data"]},{"type":"character","attributes":{},"value":["This research explores trends in student proficiency in \nreading/language arts (RLA) and math across U.S. school districts, \nfocusing on the impact of socioeconomic status (SES). \nWe address data inconsistencies and missingness while \npreparing the dataset for analysis.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Aden Bhagwat, Emily Mingus, Erick Ndjue"]},{"type":"character","attributes":{},"value":["https://adenb0220.github.io/EDLD_652_Final/"]},{"type":"character","attributes":{},"value":["University of Oregon"]}]}]},{"type":"character","attributes":{},"value":["03-04-2025"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1454,7 +1521,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Analyzing Educational Proficiency Data","description":"This article explores trends in student proficiency in \nreading/language arts (RLA) and math across U.S. school districts, \nfocusing on the impact of socioeconomic status (SES). \nWe address data inconsistencies and missingness while \npreparing the dataset for analysis.","authors":[{"author":"Aden Bhagwat, Emily Mingus, Erick Ndjue","authorURL":"https://adenb0220.github.io/EDLD_652_Final/","affiliation":"University of Oregon","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-03-04T00:00:00.000-08:00","citationText":"Ndjue, 2025"}
+{"title":"Analyzing Educational Proficiency Data","description":"This research explores trends in student proficiency in \nreading/language arts (RLA) and math across U.S. school districts, \nfocusing on the impact of socioeconomic status (SES). \nWe address data inconsistencies and missingness while \npreparing the dataset for analysis.","authors":[{"author":"Aden Bhagwat, Emily Mingus, Erick Ndjue","authorURL":"https://adenb0220.github.io/EDLD_652_Final/","affiliation":"University of Oregon","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-03-04T00:00:00.000-08:00","citationText":"Ndjue, 2025"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1468,7 +1535,7 @@
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>This article explores trends in student proficiency in
+<p><p>This research explores trends in student proficiency in
 reading/language arts (RLA) and math across U.S. school districts,
 focusing on the impact of socioeconomic status (SES).
 We address data inconsistencies and missingness while
@@ -1482,55 +1549,26 @@ preparing the dataset for analysis.</p></p>
 </div>
 
 <div class="d-article">
-<h2 id="introduction">Introduction</h2>
-<p>This study examines student proficiency trends in <strong>reading/language arts (RLA)</strong> and <strong>math</strong> from <strong>2010–2019</strong>, using data from <strong>EDFacts</strong>. We analyze the role of <strong>socioeconomic status (SES)</strong> by comparing performance between <strong>economically disadvantaged (ECD) students</strong> and <strong>all students</strong> across various grade levels.</p>
-<h2 id="dataset-overview">Dataset Overview</h2>
-<p>We sourced data using <code>{educationdata}</code> and <code>{janitor}</code>, ensuring a standardized format. Key variables include:</p>
-<ul>
-<li><strong><code>leaid</code></strong> – Local Education Agency (LEA) identifier<br />
-</li>
-<li><strong>Proficiency percentages</strong> (<code>pctprof</code>) for both <strong>ECD students</strong> and <strong>all students</strong>, spanning different grade levels</li>
-</ul>
-<h2 id="data-challenges">Data Challenges</h2>
-<p>The dataset presents <strong>inconsistencies in how proficiency is reported</strong>, including:</p>
-<ul>
-<li><strong>Exact percentages</strong> (e.g., 75)<br />
-</li>
-<li><strong>Ranges</strong> (e.g., 50–60)<br />
-</li>
-<li><strong>Greater than/Less than statements</strong> (e.g., “&gt;80”)<br />
-</li>
-<li><strong>Missing values</strong> (e.g., <code>"n/a"</code> or <code>"PS"</code>)</li>
-</ul>
-<p>To standardize:<br />
-- We <strong>extracted lower bounds from ranges</strong> and retained reported values for <strong>greater than/less than</strong> cases.<br />
-- We <strong>removed non-numeric values</strong> and converted all valid entries to <strong>numeric format</strong>.</p>
-<p>However, <strong>significant missing data remains</strong>, potentially impacting our findings. Further steps may be needed to assess patterns of missingness and determine appropriate handling strategies.</p>
-<h2 id="data-processing">Data Processing</h2>
-<p>We reshaped the dataset from <strong>wide</strong> to <strong>long format</strong> using the <code>pivot_longer()</code> function, producing a tidy dataset with the following structure:</p>
-<ul>
-<li><strong><code>leaid</code></strong> – School district identifier<br />
-</li>
-<li><strong><code>group</code></strong> – Student category (all vs. ecd)<br />
-</li>
-<li><strong><code>grade</code></strong> – Grade level or “all_grades”<br />
-</li>
-<li><strong><code>subject</code></strong> – “math” or “rla”<br />
-</li>
-<li><strong><code>pctprof</code></strong> – Percentage proficient</li>
-</ul>
+<h1 id="introduction">Introduction</h1>
+<p>Socioeconomic status (SES) has been shown to be a strong predictor of long-term success in reading and other academic outcomes. Studies suggest that children from lower SES backgrounds often face barriers to academic achievement, particularly in foundational areas like reading. Research has indicated that disparities in reading proficiency can impact long-term academic and life outcomes (see <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9588575/">PMC article on SES and reading</a>). Additionally, the American Psychological Association highlights the influence of SES on learning, noting that educational gaps tied to socioeconomic status can persist throughout a child’s educational trajectory.</p>
+<p>Given these findings, our research aims to more closely examine how SES affects student proficiency across different grade levels in reading and math, and to identify where interventions may be needed most. We will also explore how SES-related trends in achievement can inform policy decisions at the district level, particularly focusing on whether there are grade levels where these disparities are more pronounced. If patterns emerge, these insights could be critical for guiding educational interventions and policies aimed at reducing achievement gaps within districts.</p>
 <h2 id="research-questions">Research Questions</h2>
-<p>We seek to answer:</p>
+<p>Our study focuses on understanding how socioeconomic status (SES) affects educational proficiency in reading/language arts (RLA) and math. Specifically, we aim to answer the following questions:</p>
 <ol type="1">
-<li><strong>How does SES affect student proficiency in math and reading across different grade levels?</strong></li>
-<li><strong>Are there consistent trends over time that highlight disparities between ECD and non-ECD students?</strong></li>
+<li><strong>How does SES affect student proficiency in math across different grade levels?</strong></li>
+<li><strong>How does SES affect student proficiency in reading/language arts (RLA) across different grade levels?</strong></li>
+<li><strong>Are there consistent trends over time that highlight disparities between economically disadvantaged (ECD) students and all students?</strong></li>
 </ol>
-<h2 id="next-steps">Next Steps</h2>
-<p>With the dataset cleaned and structured, our next step involves <strong>exploratory data analysis (EDA)</strong> to visualize trends and assess SES-related disparities in educational outcomes.</p>
-<pre><code>
-
-
-```{.r .distill-force-highlighting-css}</code></pre>
+<h2 id="demographic-information">Demographic Information</h2>
+<p>We analyzed data from a substantial number of school districts (LEAs) across the U.S., spanning a variety of grade levels and proficiency categories. Specifically:</p>
+<ul>
+<li><strong>Total number of school districts</strong>: [Insert number of districts]</li>
+<li><strong>Total number of participants</strong>: [Insert number of participants]</li>
+<li><strong>Grades represented</strong>: [Insert grade levels, e.g., “Kindergarten through 12th grade”]</li>
+<li><strong>Student groups</strong>: Data is compared between economically disadvantaged (ECD) students and all students.</li>
+</ul>
+<p>This dataset provides valuable insights into the role of socioeconomic status in educational outcomes, and we are excited to dive into the analysis!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

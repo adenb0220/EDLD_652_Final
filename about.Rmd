@@ -17,6 +17,8 @@ output:
 ---
 ## Introduction
 
+![Learn GIF](images/learn.gif)
+
 This study examines student proficiency trends in **reading/language arts (RLA)** and **math** from **2010–2019**, using data from **EDFacts**. We analyze the role of **socioeconomic status (SES)** by comparing performance between **economically disadvantaged (ECD) students** and **all students** across various grade levels.
 
 ## Dataset Overview
