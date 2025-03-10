@@ -29,7 +29,7 @@ To answer question 1 that examines the relationship between economic status or S
 ```{r}
 df %>% 
   filter(subject == "math") %>% 
-  filter(grade != "all_grades") %>% 
+  filter(grade == "all_grades") %>% 
   filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
   na.omit() %>%  
   ggplot(aes(x = group, y = pctprof)) +
@@ -50,7 +50,7 @@ df %>%
 ```{r}
 df %>%
   filter(subject == "math") %>%
-  filter(grade != "all_grades") %>%
+  filter(grade == "all_grades") %>%
   filter(group %in% c("all", "ecd")) %>%
   na.omit() %>%
   ggplot(aes(x = group, y = pctprof, fill = group)) +
@@ -71,7 +71,7 @@ Figure 3 shows the Reading proficiency scores of all the students against those 
 ```{r}
 df %>% 
   filter(subject == "rla") %>%  # Filter for reading proficiency
-  filter(grade != "all_grades") %>% 
+  filter(grade == "all_grades") %>% 
   filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
   na.omit() %>%  
   ggplot(aes(x = group, y = pctprof)) +
@@ -93,7 +93,7 @@ df %>%
 ```{r}
 df %>% 
   filter(subject == "rla") %>%  # Filter for reading proficiency
-  filter(grade != "all_grades") %>% 
+  filter(grade == "all_grades") %>% 
   filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
   na.omit() %>%  
   ggplot(aes(x = group, y = pctprof, fill = group)) +
