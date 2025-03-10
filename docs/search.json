@@ -2,28 +2,24 @@
   "articles": [
     {
       "path": "about.html",
-      "title": "PLACEHOLDER FOR DATA INFO AND DEMOGRAPHICS",
-      "description": "Some additional details about the blog",
-      "author": [],
-<<<<<<< Updated upstream
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-10T12:42:55-07:00"
-=======
-      "contents": "\nAUTHORS\n\n\n\nErick Munene Njue is a doctoral student in Special Education and a former high school teacher in Kenya. He holds a bachelor’s degree in education, linguistics, and literature from the University of Nairobi and a Master of Science in education policy and leadership from the University of Oregon. He is interested in education policy for dually identified students, inclusive education and identification, and the referral and assessment of dually identified students. He is involved in research on the Inclusive Skill-Building Learning Approach (ISLA) to reduce the school-to-prison pipeline and enhancing adolescents’ literacy skills in juvenile detention.\n\n\n\n",
-      "last_modified": "2025-03-10T15:00:38-07:00"
->>>>>>> Stashed changes
+      "title": "Analyzing Educational Proficiency Data",
+      "description": "This article explores trends in student proficiency in \nreading/language arts (RLA) and math across U.S. school districts, \nfocusing on the impact of socioeconomic status (SES). \nWe address data inconsistencies and missingness while \npreparing the dataset for analysis.\n",
+      "author": [
+        {
+          "name": "Aden Bhagwat, Emily Mingus, Erick Ndjue",
+          "url": "https://adenb0220.github.io/EDLD_652_Final/"
+        }
+      ],
+      "date": "03-04-2025",
+      "contents": "\nIntroduction\nThis study examines student proficiency trends in reading/language arts (RLA) and math from 2010–2019, using data from EDFacts. We analyze the role of socioeconomic status (SES) by comparing performance between economically disadvantaged (ECD) students and all students across various grade levels.\nDataset Overview\nWe sourced data using {educationdata} and {janitor}, ensuring a standardized format. Key variables include:\nleaid – Local Education Agency (LEA) identifier\nProficiency percentages (pctprof) for both ECD students and all students, spanning different grade levels\nData Challenges\nThe dataset presents inconsistencies in how proficiency is reported, including:\nExact percentages (e.g., 75)\nRanges (e.g., 50–60)\nGreater than/Less than statements (e.g., “>80”)\nMissing values (e.g., \"n/a\" or \"PS\")\nTo standardize:\n- We extracted lower bounds from ranges and retained reported values for greater than/less than cases.\n- We removed non-numeric values and converted all valid entries to numeric format.\nHowever, significant missing data remains, potentially impacting our findings. Further steps may be needed to assess patterns of missingness and determine appropriate handling strategies.\nData Processing\nWe reshaped the dataset from wide to long format using the pivot_longer() function, producing a tidy dataset with the following structure:\nleaid – School district identifier\ngroup – Student category (all vs. ecd)\ngrade – Grade level or “all_grades”\nsubject – “math” or “rla”\npctprof – Percentage proficient\nResearch Questions\nWe seek to answer:\nHow does SES affect student proficiency in math and reading across different grade levels?\nAre there consistent trends over time that highlight disparities between ECD and non-ECD students?\nNext Steps\nWith the dataset cleaned and structured, our next step involves exploratory data analysis (EDA) to visualize trends and assess SES-related disparities in educational outcomes.\n```{.r .distill-force-highlighting-css}\n\n\n",
+      "last_modified": "2025-03-10T15:23:34-07:00"
     },
     {
       "path": "index.html",
       "title": "EDLD 652 Website",
       "author": [],
-<<<<<<< Updated upstream
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-03-10T12:42:56-07:00"
-=======
       "contents": "\n\n\n\n",
-      "last_modified": "2025-03-10T15:00:39-07:00"
->>>>>>> Stashed changes
+      "last_modified": "2025-03-10T15:22:23-07:00"
     }
   ],
   "collections": ["posts/posts.json"]

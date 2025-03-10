@@ -15,52 +15,15 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-## Introduction
+**Introduction**
 
-This study examines student proficiency trends in **reading/language arts (RLA)** and **math** from **2010–2019**, using data from **EDFacts**. We analyze the role of **socioeconomic status (SES)** by comparing performance between **economically disadvantaged (ECD) students** and **all students** across various grade levels.
+This is our dataset 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 
-## Dataset Overview
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
 
-We sourced data using `{educationdata}` and `{janitor}`, ensuring a standardized format. Key variables include:
-
-- **`leaid`** – Local Education Agency (LEA) identifier  
-- **Proficiency percentages** (`pctprof`) for both **ECD students** and **all students**, spanning different grade levels  
-
-## Data Challenges
-
-The dataset presents **inconsistencies in how proficiency is reported**, including:
-
-- **Exact percentages** (e.g., 75)  
-- **Ranges** (e.g., 50–60)  
-- **Greater than/Less than statements** (e.g., ">80")  
-- **Missing values** (e.g., `"n/a"` or `"PS"`)  
-
-To standardize:  
-- We **extracted lower bounds from ranges** and retained reported values for **greater than/less than** cases.  
-- We **removed non-numeric values** and converted all valid entries to **numeric format**.  
-
-However, **significant missing data remains**, potentially impacting our findings. Further steps may be needed to assess patterns of missingness and determine appropriate handling strategies.
-
-## Data Processing
-
-We reshaped the dataset from **wide** to **long format** using the `pivot_longer()` function, producing a tidy dataset with the following structure:
-
-- **`leaid`** – School district identifier  
-- **`group`** – Student category (all vs. ecd)  
-- **`grade`** – Grade level or "all_grades"  
-- **`subject`** – "math" or "rla"  
-- **`pctprof`** – Percentage proficient  
-
-## Research Questions
-
-We seek to answer:
-
-1. **How does SES affect student proficiency in math and reading across different grade levels?**
-2. **Are there consistent trends over time that highlight disparities between ECD and non-ECD students?**
-
-## Next Steps
-
-With the dataset cleaned and structured, our next step involves **exploratory data analysis (EDA)** to visualize trends and assess SES-related disparities in educational outcomes.
 ```
 
 
