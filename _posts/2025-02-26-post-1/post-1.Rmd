@@ -16,14 +16,68 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-As discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme. 
+```{r}
 
-```{r, fig.show = 'hold'}
 library(rio)
 library(here)
 library(tidyverse)
 
 df<-import(here("Data/clean_data.csv"))
+
+df %>%
+  filter(subject == "rla", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+            hjust = 1,  
+            vjust = -1.5,   
+            size = 3.5,    
+            fontface = "bold",
+            show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_discrete(labels = function(x) gsub("^0", "", x)) +
+  labs(
+    title = "Reading Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)"
+  ) +
+  scale_color_viridis_d(
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students"),
+    begin = 0.1,
+    end = 0.5
+  ) +
+  guides(color = guide_legend(title = NULL, 
+                              reverse = TRUE)) +  # Swapping the order of the legend labels
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    legend.direction = "horizontal",
+    legend.justification = "left",
+    legend.title.position = "top",
+    legend.spacing.x = unit(5, "lines"),  # Space between legend items
+    legend.spacing.y = unit(1, "lines"),  # Vertical space between legend and plot
+    legend.margin = margin(t = -5)  # Adds space between the legend and the plot
+  )
+
+```
+
+
+::: {style="text-align: center;"}
+This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in reading, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 12 percentage points, 8th graders are separated by about 13 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing.
+
+Please see below for the iterations of this graph
+:::
+
+::: {style="text-align: center;"}
+As discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme. 
+:::
+
+```{r, fig.show = 'hold'}
 
 #lollipop 1
 df %>%

@@ -11,19 +11,73 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-<div style="text-align: center;">
-As our previous plot revealed that there are discrepancies between economically disadvantaged (ECD) students and the total student population in terms of reading and math proficiency, we decided to examine whether this trend differed by grade level. Our dataset included scores from 3rd grade to 8th grade, so we decided to look longitudinally for any changes in the proficiency gap between ECD and all students. We were especially curious if the gap would widen or narrow as students progress in school. 
-</div><br>
+::: {style="text-align: center;"}
+As our previous plot revealed that there are discrepancies between economically disadvantaged (ECD) students and the total student population in terms of reading and math proficiency, we decided to examine whether this trend differed by grade level. Our dataset included scores from 3rd grade to 8th grade, so we decided to look longitudinally for any changes in the proficiency gap between ECD and all students. We were especially curious if the gap would widen or narrow as students progress in school.
+
+<br>
+:::
+
 ```{r}
+
 library(rio)
 library(here)
 library(tidyverse)
 df<-import(here("Data/clean_data.csv"))
+
+df %>%
+  filter(subject == "math", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
+  mutate(grade = factor(grade, levels = rev(unique(grade)))) %>%
+  mutate(grade = droplevels(grade)) %>%
+  group_by(grade, group) %>%
+  summarise(avg_pctprof = mean(pctprof, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(y = grade, x = avg_pctprof, color = group)) +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade), size = 1.2) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0(round(avg_pctprof, 1), "%")),  
+            hjust = 1,  
+            vjust = -1.5,   
+            size = 3.5,    
+            fontface = "bold",
+            show.legend = FALSE) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_discrete(labels = function(x) gsub("^0", "", x)) +
+  labs(
+    title = "Math Proficiency Percentage by Grade and Economic Status",
+    y = "Grade",
+    x = "Average Proficiency (%)"
+  ) +
+  scale_color_viridis_d(
+    labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students"),
+    begin = 0.1,
+    end = 0.5
+  ) +
+  guides(color = guide_legend(title = NULL, 
+                              reverse = TRUE)) +  # Swapping the order of the legend labels
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    legend.direction = "horizontal",
+    legend.justification = "left",
+    legend.title.position = "top",
+    legend.spacing.x = unit(5, "lines"),  # Space between legend items
+    legend.spacing.y = unit(1, "lines"),  # Vertical space between legend and plot
+    legend.margin = margin(t = -5)  # Adds space between the legend and the plot
+  )
+
+```
+
+::: {style="text-align: center;"}
+This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in math, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 10 percentage points, 8th graders are separated by about 14 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing.
+
+Please see below for the iterations of this graph
+:::
+
+```{r}
+
 
 
 #side by side bar graph
@@ -58,11 +112,15 @@ df %>%
   theme_minimal()
 
 ```
-<div style="text-align: center;">
-We started with a side by side bar graph, which seemed like the most straightforward way to display our desired information. This took a decent amount of data cleaning and filtering to accomplish, because our data also included a variable for 'all grade levels.' We also had to summarize averages and group variables to get our desired graph. While effective, the side by side plot did not highlight changes over time, but instead treated each grade as a separate comparison. We were able to add floating percentages for more precision, but the graph feels fairly crowded and busy. It is also difficult to visually identify any changes from grade to grade. While this is somewhat fine because changes are very small, it would be nice to be able to see at least a bit of variation more easily. 
 
-I then asked ChatGPT for help varying the graph types and colors, to brainstorm ideas for making the graph more aesthetically pleasing and informative. The next graph type created was a line graph. While I liked that the line graph plotted the scores in a way that highlights changes over time, I felt that the y-axis needed to be from 0-100% to avoid falsely inflating the discrepancies between all students and ECD. The downside of this is that there is a lot of white space and the graph is fairly boring. 
-</div><br>
+::: {style="text-align: center;"}
+We started with a side by side bar graph, which seemed like the most straightforward way to display our desired information. This took a decent amount of data cleaning and filtering to accomplish, because our data also included a variable for 'all grade levels.' We also had to summarize averages and group variables to get our desired graph. While effective, the side by side plot did not highlight changes over time, but instead treated each grade as a separate comparison. We were able to add floating percentages for more precision, but the graph feels fairly crowded and busy. It is also difficult to visually identify any changes from grade to grade. While this is somewhat fine because changes are very small, it would be nice to be able to see at least a bit of variation more easily.
+
+I then asked ChatGPT for help varying the graph types and colors, to brainstorm ideas for making the graph more aesthetically pleasing and informative. The next graph type created was a line graph. While I liked that the line graph plotted the scores in a way that highlights changes over time, I felt that the y-axis needed to be from 0-100% to avoid falsely inflating the discrepancies between all students and ECD. The downside of this is that there is a lot of white space and the graph is fairly boring.
+:::
+
+<br>
+
 ```{r}
 #line graph
 df %>%
@@ -88,9 +146,12 @@ df %>%
   theme_minimal()
 
 ```
-<div style="text-align: center;">
-Next we tried a stacked bar plot, to see if that would really demonstrate the gap in proficiency between our two groups. This was visually very confusing, because it makes the gap look much more intense. It is misleading, because it should be read as all students starting where ECD ends, so for example 3rd grade would start around 45% and end around 100%, indicating an average proficiency of about 55%.However, with the y-axis, it looks like all students in 3rd grade have almost a 100% proficiency. We definitely did not want to use this misleading graph. 
-</div><br>
+
+::: {style="text-align: center;"}
+Next we tried a stacked bar plot, to see if that would really demonstrate the gap in proficiency between our two groups. This was visually very confusing, because it makes the gap look much more intense. It is misleading, because it should be read as all students starting where ECD ends, so for example 3rd grade would start around 45% and end around 100%, indicating an average proficiency of about 55%.However, with the y-axis, it looks like all students in 3rd grade have almost a 100% proficiency. We definitely did not want to use this misleading graph.
+:::
+
+<br>
 
 ```{r}
 #stacked bar plot
@@ -116,9 +177,13 @@ df %>%
   theme_classic()
 
 ```
-<div style="text-align: center;">
-Next we tried a boxplot to illustrate the variation in each group, while still focusing on the fact that the median for all students is higher than the median for ECD students across each grade level. We also used the viridis palette to make the graph colorblind accessible. However, this graph is really busy and a but hard to interpret. It does include a lot of valuable information about variation and distributions, but may muddle the main point that we want to convey, that ECD students are performing lower on average than all other students. 
-</div><br>
+
+::: {style="text-align: center;"}
+Next we tried a boxplot to illustrate the variation in each group, while still focusing on the fact that the median for all students is higher than the median for ECD students across each grade level. We also used the viridis palette to make the graph colorblind accessible. However, this graph is really busy and a but hard to interpret. It does include a lot of valuable information about variation and distributions, but may muddle the main point that we want to convey, that ECD students are performing lower on average than all other students.
+:::
+
+<br>
+
 ```{r}
 
 #colorblind friendly boxplot 
@@ -143,9 +208,12 @@ df %>%
   ) +
   theme_minimal()
 ```
-<div style="text-align: center;">
-Finally, we tried a lollipop graph. This allowed us to see changes linearly over time by following from top to bottom, and did a nice job of highlighting our major takeaway. Each ECD line is shorter than the "All" line, indicating that there is a discrepancy. We were also able to add floating percentages for precision. The graph is relatively simple and minimal, while still providing information and staying interesting. Using the full 100% scale on the x axis both keeps the discrepancy accurately proportional, and highlights that neither group is more than 57% proficient, which is not ideal. 
-</div><br>
+
+::: {style="text-align: center;"}
+Finally, we tried a lollipop graph. This allowed us to see changes linearly over time by following from top to bottom, and did a nice job of highlighting our major takeaway. Each ECD line is shorter than the "All" line, indicating that there is a discrepancy. We were also able to add floating percentages for precision. The graph is relatively simple and minimal, while still providing information and staying interesting. Using the full 100% scale on the x axis both keeps the discrepancy accurately proportional, and highlights that neither group is more than 57% proficient, which is not ideal.
+:::
+
+<br>
 
 ```{r}
 #lollipop graph
@@ -178,9 +246,13 @@ df %>%
 
 
 ```
-<div style="text-align: center;">
-We decided that this was the most effective graph, but wanted to play around with the colors, themes, etc. to have it match the rest of our blog and be accessible. Please see the next post to see how we varied this plot to end up with our final product below: 
-</div><br>
+
+::: {style="text-align: center;"}
+We decided that this was the most effective graph, but wanted to play around with the colors, themes, etc. to have it match the rest of our blog and be accessible. Please see the next post to see how we varied this plot to end up with our final product below:
+:::
+
+<br>
+
 ```{r}
 df %>%
   filter(subject == "math", grade != "all_grades", grade != "", !is.na(pctprof), !is.na(grade)) %>%
@@ -224,4 +296,3 @@ df %>%
 
 
 ```
-
