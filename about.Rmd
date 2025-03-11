@@ -7,7 +7,7 @@ description: |
   We address data inconsistencies and missingness while 
   preparing the dataset for analysis.
 author:
-  - name: Aden Bhagwat, Emily Mingus, Erick Ndjue  
+  - name: Aden Bhagwat, Emily Mingus, Erick Njue  
     url: https://adenb0220.github.io/EDLD_652_Final/
     affiliation: University of Oregon
 date: 03-04-2025

@@ -3,7 +3,7 @@ title: "Reading Proficiency by Grade Level"
 description: |
   Reading Profiency by Grade Level, Comparing Economically Disadvantaged Students to All Students.
 author:
-  - name: Aden Bhagwat, Emily Mingus, Erick Ndjue
+  - name: Aden Bhagwat, Emily Mingus, Erick Njue
     url: https://adenb0220.github.io/EDLD_652_Final/
 date: 2025-03-01
 output:
