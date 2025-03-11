@@ -45,9 +45,7 @@ df %>%
  theme(legend.position = "none") 
 ```
 
-As seen in Figure 1, on average, students from All Students are more proficient in Math compared to Economically Disadvantaged Students. The All Students group has a mean proficiency of around 65%, while the Economically Disadvantaged Students group has a mean proficiency closer to 55%. The large difference in the length of the bars highlights the disparity between the two groups in terms of math proficiency.
-
-To understand the relationship in Math proficiency for All Students group against the Economically Disadvantaged Student group in a better way we used a box plot in Figure 2. 
+As seen in Figure 1, on average, students from All Students are more proficient in Math compared to Economically Disadvantaged Students. The All Students group has a mean proficiency of around 65%, while the Economically Disadvantaged Students group has a mean proficiency closer to 55%. The large difference in the length of the bars highlights the disparity between the two groups in terms of math proficiency.To understand the relationship in Math proficiency for All Students group against the Economically Disadvantaged Student group in a better way we used a box plot in Figure 2. 
 
 **Figure 2**
 
@@ -72,8 +70,6 @@ df %>%
 ```
 
 As seen in Figure 2, on average, students in the All Students group perform better than those in the Economically Disadvantaged group with both groups showing variation in proficiency. In the All students group, there are outliers that scored significantly lower than the majority. We concluded, on average, the Math proficiency for economically disadvantaged students is lower than that of all students. We then wanted to understand the relationship in Reading proficiency for All Students group as compared to the Economically Disadvantaged Students group. To examine this relationship, we first used a bar plot to visualize their distribution as presented in Figure 3. 
-
-Figure 3 shows the Reading proficiency scores of all the students against those of economically disadvantaged students and Figure 4 shows shows the mean percent of the students in Reading by their economic status. All students perform better than economically disadvantaged students.
 
 **Figure 3**
 
@@ -124,6 +120,4 @@ df %>%
 
 Figure 4 suggest that, on average, the All Students group  perform better in reading compared to Economically Disadvantaged Students where the All Students group having slightly higher overall scores. The Economically Disadvantaged Students group has a lower minimum score, meaning some students in this category are performing much lower than their peers. There seem to be more outliers in the All Students group than the Economically Disadvantaged Students group. 
 
-We concluded that there is an achievement gap that exists between Math and Reading proficiencies in both groups where Economically Disadvantaged Students consistently score lower than the All Students group possibly suggesting that economic status plays a significant role in academic performance. There is a greater score variability  among the Economically Disadvantaged Students group where some students in this group perform well, but a significant number struggle, as seen in the outliers. The proficiency gap in reading mirrors the gap in math, suggesting that the issue is not subject-specific. 
-
-However, before we made some further conclusions and implications, we wanted to know if the disparities seen in the results above were consistent across the grade levels. leading us to examine the relationship between SES and proficiency score in different grade levels. 
+We concluded that there is an achievement gap that exists between Math and Reading proficiency in both groups where Economically Disadvantaged Students consistently score lower than the All Students group possibly suggesting that economic status plays a significant role in academic performance. There is a greater score variability  among the Economically Disadvantaged Students group where some students in this group perform well, but a significant number struggle, as seen in the outliers. The proficiency gap in reading mirrors the gap in math, suggesting that the issue is not subject-specific. However, before we made some further conclusions and implications, we wanted to know if the disparities seen in the results above were consistent across the grade levels. leading us to examine the relationship between SES and proficiency score in different grade levels. 

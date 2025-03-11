@@ -63,4 +63,3 @@ We seek to answer:
 ## Next Steps
 
 With the dataset cleaned and structured, our next step involves **exploratory data analysis (EDA)** to visualize trends and assess SES-related disparities in educational outcomes.
-```
