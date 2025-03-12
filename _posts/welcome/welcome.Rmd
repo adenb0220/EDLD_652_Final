@@ -30,10 +30,11 @@ Our study focuses on understanding how socioeconomic status (SES) affects educat
 ## Demographic Information  
 We analyzed data from a substantial number of school districts (LEAs) across the U.S., spanning a variety of grade levels and proficiency categories. Specifically:
 
-- **Total number of school districts**: [Insert number of districts]
-- **Total number of participants**: [Insert number of participants]
-- **Grades represented**: [Insert grade levels, e.g., "Kindergarten through 12th grade"]
+- **Total number of school districts**: 15751 unique district IDs
+- **Grades represented**: 3-8
 - **Student groups**: Data is compared between economically disadvantaged (ECD) students and all students.
+
+It is unclear the exact number of students represented in the data, however we do know that there are 15751 unique district codes. The data reported include the average scores per grade, per district. Therefore, claims can only be made in respect to trends by grade level and within/across districts by grade level.
 
 This dataset provides valuable insights into the role of socioeconomic status in educational outcomes, and we are excited to dive into the analysis!
 
