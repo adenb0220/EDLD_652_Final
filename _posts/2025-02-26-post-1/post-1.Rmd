@@ -69,8 +69,79 @@ df %>%
 
 ::: {style="text-align: center;"}
 This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in reading, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 12 percentage points, 8th graders are separated by about 13 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing.
+:::
 
-Please see below for the iterations of this graph
+
+```{r, fig.width=12, fig.height=8}
+grade_levels <- rev(sort(unique(df$grade[df$grade != "all_grades" & df$grade != "" & !is.na(df$grade)])))
+
+df %>%
+  filter(subject %in% c("rla", "math"), 
+         grade != "all_grades", 
+         grade != "", 
+         !is.na(pctprof), 
+         !is.na(grade)) %>%
+  mutate(
+    grade = factor(grade, levels = grade_levels),  # Use externally defined grade_levels
+    subject = factor(subject, levels = c("math", "rla"), 
+                     labels = c("Mathematics", "Reading (RLA)")),
+    group = factor(group, levels = c("ecd", "all"), 
+                   labels = c("Economically Disadvantaged", "All Students")),
+    grade_numeric = as.numeric(grade)  # Convert factor to numeric for positioning
+  ) %>%
+  group_by(subject, grade, group) %>%
+  summarise(
+    avg_pctprof = mean(pctprof, na.rm = TRUE),
+    grade_numeric = first(grade_numeric),  # Carry over numeric grade
+    .groups = "drop"
+  ) %>%
+  mutate(
+    grade_offset = grade_numeric + ifelse(subject == "Mathematics", 0.3, -0.3)
+  ) %>%
+  ggplot(aes(y = grade_offset, x = avg_pctprof, color = subject, shape = group)) +
+  # Add horizontal dashed lines to distinguish grade levels
+  geom_hline(yintercept = seq(1.5, length(grade_levels) - 0.5, by = 1), 
+             color = "grey20", linetype = "dashed") +
+  geom_segment(aes(x = 0, xend = avg_pctprof, yend = grade_offset), size = 1.5) +
+  geom_point(size = 4.5) +
+  scale_x_continuous(limits = c(0, 100)) +
+  # Set y-axis breaks at base grade positions using grade_levels
+  scale_y_continuous(breaks = seq_along(grade_levels), labels = grade_levels) +
+  labs(
+    title = "Proficiency Percentage by Grade, Economic Status, and Subject",
+    y = "Grade Level",
+    x = "Average Proficiency (%)"
+  ) +
+  scale_color_viridis_d(begin = 0.1, end = 0.5) +
+  scale_shape_manual(values = c("Economically Disadvantaged" = 17, "All Students" = 16)) +
+  guides(
+    color = guide_legend(title = "Subject"),
+    shape = guide_legend(title = "Economic Status")
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    legend.position = "top",
+    legend.direction = "horizontal",
+    legend.justification = "left",
+    legend.title.position = "top",
+    legend.spacing.x = unit(3, "lines"),
+    legend.spacing.y = unit(2, "lines"),
+    legend.margin = margin(t = 10, b = 10),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16),
+    plot.title = element_text(size = 24, face = "bold"),
+    plot.margin = margin(30, 30, 30, 30)
+  ) +
+  coord_cartesian(clip = "off")
+
+```
+
+::: {style="text-align: center;"}
+
+Here we created a graph with both reading and math on the same chart. We have a slight preference for keeping them separate to allow for more information to be displayed (ie. percentage labels), but this was not possible without overcrowding this version of the graph. We also added dashed lines between grade levels to make the separation easier to see at a glance. 
+
+
+Please see below for more iterations of this graph
 :::
 
 ::: {style="text-align: center;"}

@@ -320,6 +320,7 @@ For Question 1: Does SES affect proficiency scores?
       )%>% 
       print(n = Inf)
 
+    length(unique(df$leaid))
 
     ```
 

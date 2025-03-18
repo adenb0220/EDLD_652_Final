@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["post-1_files/anchor-4.2.2/anchor.min.js","post-1_files/bowser-1.9.3/bowser.min.js","post-1_files/distill-2.2.21/template.v2.js","post-1_files/figure-html5/unnamed-chunk-1-1.png","post-1_files/figure-html5/unnamed-chunk-2-1.png","post-1_files/figure-html5/unnamed-chunk-2-2.png","post-1_files/figure-html5/unnamed-chunk-3-1.png","post-1_files/figure-html5/unnamed-chunk-3-2.png","post-1_files/figure-html5/unnamed-chunk-4-1.png","post-1_files/figure-html5/unnamed-chunk-5-1.png","post-1_files/header-attrs-2.29/header-attrs.js","post-1_files/jquery-3.6.0/jquery-3.6.0.js","post-1_files/jquery-3.6.0/jquery-3.6.0.min.js","post-1_files/jquery-3.6.0/jquery-3.6.0.min.map","post-1_files/popper-2.6.0/popper.min.js","post-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","post-1_files/tippy-6.2.7/tippy-light-border.css","post-1_files/tippy-6.2.7/tippy.css","post-1_files/tippy-6.2.7/tippy.umd.min.js","post-1_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["post-1_files/anchor-4.2.2/anchor.min.js","post-1_files/bowser-1.9.3/bowser.min.js","post-1_files/distill-2.2.21/template.v2.js","post-1_files/figure-html5/unnamed-chunk-1-1.png","post-1_files/figure-html5/unnamed-chunk-2-1.png","post-1_files/figure-html5/unnamed-chunk-2-2.png","post-1_files/figure-html5/unnamed-chunk-3-1.png","post-1_files/figure-html5/unnamed-chunk-3-2.png","post-1_files/figure-html5/unnamed-chunk-4-1.png","post-1_files/figure-html5/unnamed-chunk-4-2.png","post-1_files/figure-html5/unnamed-chunk-5-1.png","post-1_files/figure-html5/unnamed-chunk-6-1.png","post-1_files/header-attrs-2.29/header-attrs.js","post-1_files/jquery-3.6.0/jquery-3.6.0.js","post-1_files/jquery-3.6.0/jquery-3.6.0.min.js","post-1_files/jquery-3.6.0/jquery-3.6.0.min.map","post-1_files/popper-2.6.0/popper.min.js","post-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","post-1_files/tippy-6.2.7/tippy-light-border.css","post-1_files/tippy-6.2.7/tippy.css","post-1_files/tippy-6.2.7/tippy.umd.min.js","post-1_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2480,13 +2480,19 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <div style="text-align: center;">
 <p>This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in reading, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 12 percentage points, 8th graders are separated by about 13 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing.</p>
-<p>Please see below for the iterations of this graph</p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="post-1_files/figure-html5/unnamed-chunk-2-1.png" width="1152" /></p>
+</div>
+<div style="text-align: center;">
+<p>Here we created a graph with both reading and math on the same chart. We have a slight preference for keeping them separate to allow for more information to be displayed (ie. percentage labels), but this was not possible without overcrowding this version of the graph. We also added dashed lines between grade levels to make the separation easier to see at a glance.</p>
+<p>Please see below for more iterations of this graph</p>
 </div>
 <div style="text-align: center;">
 <p>As discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme.</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="post-1_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<p><img src="post-1_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p><br></p>
 <div style="text-align: center;">
@@ -2494,14 +2500,14 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <br><br>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="post-1_files/figure-html5/unnamed-chunk-3-1.png" width="624" /><img src="post-1_files/figure-html5/unnamed-chunk-3-2.png" width="624" /></p>
+<p><img src="post-1_files/figure-html5/unnamed-chunk-4-1.png" width="624" /><img src="post-1_files/figure-html5/unnamed-chunk-4-2.png" width="624" /></p>
 </div>
 <div style="text-align: center;">
 <p>We realized we could set a beginning and end to the viridis colors, which could eliminate the bright yellow and make the graph more friendly for colorblind and non-colorblind viewers. This also allowed us to keep the theme_minimal(), which matched better with the rest of our blog. We kept playing with the beginning and end values until we were satisfied that the colors looked good while still remaining accessible. As final touches, we adjusted the legend to be horizontal and near the top.</p>
 </div>
 <br>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="post-1_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="post-1_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <br><br>
 <div style="text-align: center;">
@@ -2509,7 +2515,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <br>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="post-1_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<p><img src="post-1_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
