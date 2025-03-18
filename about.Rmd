@@ -63,3 +63,13 @@ We seek to answer:
 ## Next Steps
 
 With the dataset cleaned and structured, our next step involves **exploratory data analysis (EDA)** to visualize trends and assess SES-related disparities in educational outcomes.
+
+## Future Directions
+
+Following the presentation and feedback from peers and the instructor, several new questions emerged that we plan to address moving forward. As previously discussed, the data wrangling process for this project has proven challenging. One valuable suggestion was to provide additional context around trends by state. There may be certain policies influencing scores that would be better understood and visualized with this filtering. Upon a deeper review of the codebook, it was noted that LEID States submit data at three distinct education levels: state, LEA (Local Education Agency, which includes school districts), and school level.
+
+Each LEA is assigned a unique 7-digit ID by the National Center for Education Statistics (NCES), known as the NCES LEA Identification Number. The first two digits of this number form the American National Standards Institute (ANSI) state code, while the remaining five digits are unique within that state for the LEA. Similarly, each school within an LEA is assigned a unique 12-digit ID by NCES. The first seven digits correspond to the NCES LEA Identification Number, and the remaining five digits are unique to the specific school within the LEA. It’s important to note that these five digits may not be unique within the state.
+
+Beginning in the 2016-17 school year, two new fields—ST_LEAID and ST_SCHID—were added to the LEA and school-level assessment files in the Common Core of Data (CCD) to improve the identification of districts and schools within states, as well as their connection to other CCD data files.
+
+Additionally, we received the suggestion to create a side-by-side visual comparing math and reading data, which we have implemented. Further analysis can be conducted in these areas to identify trends within specific districts across different grades. Additionally, exploring alternative methods of cleaning the data by state may yield more useful insights and enable a more granular understanding of the data.
