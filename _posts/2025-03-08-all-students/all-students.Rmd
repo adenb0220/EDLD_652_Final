@@ -69,15 +69,59 @@ df %>%
   theme(legend.position = "none")
 ```
 
-As seen in Figure 2, on average, students in the All Students group perform better than those in the Economically Disadvantaged group with both groups showing variation in proficiency. In the All students group, there are outliers that scored significantly lower than the majority. We concluded, on average, the Math proficiency for economically disadvantaged students is lower than that of all students. We then wanted to understand the relationship in Reading proficiency for All Students group as compared to the Economically Disadvantaged Students group. To examine this relationship, we first used a bar plot to visualize their distribution as presented in Figure 3. 
+As seen in Figure 2, on average, students in the All Students group perform better than those in the Economically Disadvantaged group with both groups showing variation in proficiency. In the All students group, there are outliers that scored significantly lower than the majority. We concluded, on average, the Math proficiency for economically disadvantaged students is lower than that of all students. We combined the plots in Figure 3 for better visualization. 
 
 **Figure 3**
+
+```{r}
+
+# Filter data once
+df_filtered <- df %>%
+  filter(subject == "math", grade == "all_grades", group %in% c("all", "ecd")) %>%
+  na.omit()
+
+# Create summary data for bar plot
+df_bar <- df_filtered %>%
+  group_by(group) %>%
+  summarise(pctprof = mean(pctprof)) %>%
+  mutate(plot_type = "Bar Plot")  
+
+# Add identifier for box plot data
+df_box <- df_filtered %>%
+  mutate(plot_type = "Boxplot")
+
+# Combine both datasets
+df_combined <- bind_rows(df_bar, df_box)
+
+# Plot with facet wrap for shared x and y axis
+ggplot(df_combined, aes(x = group, y = pctprof, fill = group)) +
+  geom_boxplot(data = subset(df_combined, plot_type == "Boxplot")) +
+  geom_bar(data = subset(df_combined, plot_type == "Bar Plot"), 
+           stat = "identity", position = "dodge") +
+  facet_wrap(~plot_type, scales = "fixed") +  #
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  scale_fill_manual(values = c("all" = "red", "ecd" = "blue")) +
+  labs(
+    x = "Economic Status",
+    y = "Percent Proficient",
+    title = "Percent of Students Proficient in Math by Economic Status"
+  ) +
+  theme(legend.position = "right",  strip.text = element_blank(),
+    axis.text.x = element_blank())
+
+```
+
+
+We then wanted to understand the relationship in Reading proficiency for All Students group as compared to the Economically Disadvantaged Students group. To examine this relationship, we first used a bar plot to visualize their distribution as presented in Figure 4. 
+
+**Figure 4**
 
 ```{r}
 df %>% 
   filter(subject == "rla") %>%  # Filter for reading proficiency
   filter(grade == "all_grades") %>% 
-  filter(group %in% c("all", "ecd")) %>%  # Keep only "all" and "ecd" groups
+  filter(group %in% c("all", "ecd")) %>%  
   na.omit() %>%  
   ggplot(aes(x = group, y = pctprof, fill = group)) +
   stat_summary(fun = mean, geom = "bar", position = "dodge") +  # Bar plot with mean values
@@ -93,9 +137,9 @@ df %>%
   theme(legend.position = "none")
 ```
 
-As figure 3 shows, on average, All Students perform better in reading than those from economically disadvantaged backgrounds. The All Students group has a mean proficiency above 60%, while the Economically Disadvantaged Students group is slightly above 50%. This suggests a persistent achievement gap between the two groups.The proficiency gap appears similar to the math proficiency although the reading scores might be slightly higher than math scores for both groups.To understand the relationship between reading proficiency and economic status in a deeper sense, we used a box plot as shown in Figure 4. 
+As figure 4 shows, on average, All Students perform better in reading than those from economically disadvantaged backgrounds. The All Students group has a mean proficiency above 60%, while the Economically Disadvantaged Students group is slightly above 50%. This suggests a persistent achievement gap between the two groups.The proficiency gap appears similar to the math proficiency although the reading scores might be slightly higher than math scores for both groups.To understand the relationship between reading proficiency and economic status in a deeper sense, we used a box plot as shown in Figure 5. 
 
-**Figure 4**
+**Figure 5**
 
 ```{r}
 df %>% 
@@ -118,6 +162,47 @@ df %>%
 
 ```
 
-Figure 4 suggest that, on average, the All Students group  perform better in reading compared to Economically Disadvantaged Students where the All Students group having slightly higher overall scores. The Economically Disadvantaged Students group has a lower minimum score, meaning some students in this category are performing much lower than their peers. There seem to be more outliers in the All Students group than the Economically Disadvantaged Students group. 
+Figure 5 suggest that, on average, the All Students group  perform better in reading compared to Economically Disadvantaged Students where the All Students group having slightly higher overall scores. The Economically Disadvantaged Students group has a lower minimum score, meaning some students in this category are performing much lower than their peers. There seem to be more outliers in the All Students group than the Economically Disadvantaged Students group. We combined the plots in Figure 6 for better visualization.
+
+```{r}
+
+# Filter data
+df_filtered <- df %>%
+  filter(subject == "rla", grade == "all_grades", group %in% c("all", "ecd")) %>%
+  na.omit()
+
+# Transform data for faceting
+df_filtered <- df_filtered %>%
+  mutate(plot_type = "Boxplot")  
+
+df_bar <- df_filtered %>%
+  group_by(group) %>%
+  summarise(pctprof = mean(pctprof)) %>%
+  mutate(plot_type = "Bar Plot")  
+
+# Combine both datasets
+df_combined <- bind_rows(df_filtered, df_bar)
+
+# Plot both with shared axes
+ggplot(df_combined, aes(x = group, y = pctprof, fill = group)) +
+  geom_boxplot(data = subset(df_combined, plot_type == "Boxplot")) +
+  geom_bar(
+    data = subset(df_combined, plot_type == "Bar Plot"), 
+    stat = "identity", position = "dodge"
+  ) +
+  facet_wrap(~plot_type, scales = "fixed") +  # Facet by plot type
+  theme_minimal() +
+  scale_x_discrete(labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students")) +
+  scale_fill_manual(values = c("all" = "red", "ecd" = "blue")) +
+  labs(
+    x = "Economic Status",
+    y = "Percent Proficient",
+    title = "Percent of Students Proficient in Reading by Economic Status"
+  ) +
+  theme(legend.position = "right",  strip.text = element_blank(),
+    axis.text.x = element_blank())
+
+```
+
 
 We concluded that there is an achievement gap that exists between Math and Reading proficiency in both groups where Economically Disadvantaged Students consistently score lower than the All Students group possibly suggesting that economic status plays a significant role in academic performance. There is a greater score variability  among the Economically Disadvantaged Students group where some students in this group perform well, but a significant number struggle, as seen in the outliers. The proficiency gap in reading mirrors the gap in math, suggesting that the issue is not subject-specific. However, before we made some further conclusions and implications, we wanted to know if the disparities seen in the results above were consistent across the grade levels. leading us to examine the relationship between SES and proficiency score in different grade levels. 
