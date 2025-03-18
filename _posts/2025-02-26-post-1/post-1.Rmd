@@ -44,7 +44,8 @@ df %>%
   labs(
     title = "Reading Proficiency Percentage by Grade and Economic Status",
     y = "Grade",
-    x = "Average Proficiency (%)"
+    x = "Average Proficiency (%)", 
+    subtitle = "Economically Disadvantaged Student Perform Worse in Reading Proficiency Across Grades"
   ) +
   scale_color_viridis_d(
     labels = c("all" = "All Students", "ecd" = "Economically Disadvantaged Students"),
@@ -68,7 +69,7 @@ df %>%
 
 
 ::: {style="text-align: center;"}
-This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in reading, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 12 percentage points, 8th graders are separated by about 13 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing.
+This is our final graph, chosen for its accessibility and ability to convey our message. The main takeaway is that while only about half of students in all districts are proficient in reading, this proficiency percentage is even lower when only examining economically disadvantaged (ECD) students. Also, there is variation in the gap between ECD students and all students from grade to grade, but it does not seem particularly significant. While 3rd graders are separated by about 12 percentage points, 8th graders are separated by about 13 percentage points. It is possible that the discrepancy increases as grade level increases, but this would require further statistical testing. We added subtitles to both final graphs (reading and math) to ensure our message is clear. 
 :::
 
 
@@ -141,8 +142,13 @@ df %>%
 Here we created a graph with both reading and math on the same chart. We have a slight preference for keeping them separate to allow for more information to be displayed (ie. percentage labels), but this was not possible without overcrowding this version of the graph. We also added dashed lines between grade levels to make the separation easier to see at a glance. 
 
 
-Please see below for more iterations of this graph
+Please see below for more iterations of this graph.
 :::
+
+<br><br>
+<br><br>
+<br><br>
+
 
 ::: {style="text-align: center;"}
 As discussed in our previous post, we experimented with multiple types of graphs and color schemes before settling on a lollipop graph. However, we still needed to make adjustments to styling and themes to have the graph be optimized for our blog. We started with the first graph, using a green and orange color palette and minimal theme. 
